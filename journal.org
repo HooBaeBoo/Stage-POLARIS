@@ -152,21 +152,35 @@ sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 **** OBJECTIVES : 
 ***** TODO Intro : [[https://www.grid5000.fr/mediawiki/index.php/Grid5000:Home][Grid5000]] [33%]
 ****** DONE Request Account
-****** TODO First grip
+****** STARTED First grip
+:LOGBOOK:
+- State "STARTED"    from "TODO"       [2018-04-30 lun. 17:57]
+:END:
 ****** TODO Execo
 ***** TODO Intro : [[https://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org][Org-mode & Emacs]] [75%] 
-****** DONE install Emacs
+****** DONE install Emacs 
+*REMINDER* To launch using a specific configuration [[https://raw.githubusercontent.com/alegrand/RR_webinars/master/1_replicable_article_laboratory_notebook/init.el][init.el]]
+#+BEGIN_SRC sh
+emacs -q -l init.el
+#+END_SRC
 ****** DONE install Org-mode + necessary tools
 ****** DONE identify key Shortcuts
 ****** DONE Upload Journal on [[https://github.com/HooBaeBoo/Stage-POLARIS][GitHub]]
 ***** TODO Discovering the topic[0%] : 
-****** TODO Readings [0/2]
+****** STARTED Readings [0/2]
+:LOGBOOK:
+- State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
+:END:
 - [ ] Parallel and distributed simulation systems Chapter 6 : Time //
   Simulation
 - [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
-***** TODO Intro : SimGrid
-****** TODO Basics [[https://www.edx.org/course/introduction-to-python-absolute-beginner][Python & Jupyter]]
-**** Work done :
+***** TODO Intro : SimGrid[50%]
+****** DONE Install
+****** STARTED Basics [[https://www.edx.org/course/introduction-to-python-absolute-beginner][Python & Jupyter]]
+:LOGBOOK:
+- State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
+:END:
+**** Readings Synthesis :
 
 In order to simulate a system one could think of several solutions. In
 fact, there are 2 in particular we could describe :
@@ -176,6 +190,18 @@ decomposition will not be treated, we will focus on the following 2nd type.
 *TEMPORAL DECOMPOSITION* : In this solution, time is first divided into
 smaller chunks and each logical process is assigned a time chunk to
 work on. Here, processes are expected to perform a simulation of the
-entire system.
+entire system. This method however creates a problem. It wouldn't make
+sense to jump from one state to another with no continuity. So we
+expect those logical processes to come up with matching boundary
+values. When simulating to know how a process is going to end I need
+to simulate it. But that would destroy everything. We call this the
+state-matching problem and scientists came up with 3 differents
+solving approaches. First, the /fix-up computation/ : logical processes
+guess randomly the final state of the previous process. If it was
+wrong, it will just start over again with the right initial
+state. Second and third, the /precomputation of state at specific time division
+points/ and /parallel prefix computation/: If we know our system very
+well or if I have an equation, we could use this data to
+predict their behavior. 
 
 
