@@ -17,6 +17,7 @@
 * 2018
 ** 2018-02 March
 *** 2018-02-12 Monday
+
 **** [[https://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org][First webinar on reproducible research: litterate programming]]
 ***** Emacs shortcuts
 Here are a few convenient emacs shortcuts for those that have never
@@ -145,4 +146,36 @@ cd /tmp/
 wget https://download1.rstudio.org/rstudio-xenial-1.1.423-amd64.deb
 sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 #+END_SRC
+
+** 2018-04 April
+*** 2018-04-30 Monday
+**** OBJECTIVES : 
+***** TODO Intro : [[https://www.grid5000.fr/mediawiki/index.php/Grid5000:Home][Grid5000]] [33%]
+****** DONE Request Account
+****** TODO First grip
+****** TODO Execo
+***** TODO Intro : [[https://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org][Org-mode & Emacs]] [75%] 
+****** DONE install Emacs
+****** DONE install Org-mode + necessary tools
+****** DONE identify key Shortcuts
+****** DONE Upload Journal on [[https://github.com/HooBaeBoo/Stage-POLARIS][GitHub]]
+***** TODO Discovering the topic[0%] : 
+****** TODO Readings [0/2]
+- [ ] Parallel and distributed simulation systems Chapter 6 : Time //
+  Simulation
+- [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
+***** TODO Intro : SimGrid
+****** TODO Basics [[https://www.edx.org/course/introduction-to-python-absolute-beginner][Python & Jupyter]]
+**** Work done :
+
+In order to simulate a system one could think of several solutions. In
+fact, there are 2 in particular we could describe :
+*SPATIAL DECOMPOSTITION* : Each logical process is to compute all
+variables' values within the simulation time. This type of
+decomposition will not be treated, we will focus on the following 2nd type.
+*TEMPORAL DECOMPOSITION* : In this solution, time is first divided into
+smaller chunks and each logical process is assigned a time chunk to
+work on. Here, processes are expected to perform a simulation of the
+entire system.
+
 
