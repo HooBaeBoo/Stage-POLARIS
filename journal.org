@@ -156,7 +156,7 @@ sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:57]
 :END:
-****** TODO Execo
+****** TODO [[http://execo.gforge.inria.fr/doc/latest-stable/][Execo]]
 ***** TODO Intro : [[https://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org][Org-mode & Emacs]] [75%] 
 ****** DONE install Emacs 
 *REMINDER* To launch using a specific configuration [[https://raw.githubusercontent.com/alegrand/RR_webinars/master/1_replicable_article_laboratory_notebook/init.el][init.el]]
@@ -175,8 +175,8 @@ emacs -q -l init.el
   Simulation
 - [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
 ***** TODO Intro : SimGrid[33%]
-****** DONE Install
-****** STARTED [[http://simgrid.gforge.inria.fr/tutorials/simgrid-101.pdf][First grasp]]
+****** DONE [[http://simgrid.gforge.inria.fr/simgrid/latest/doc/install.html][Install]]
+****** STARTED [[http://simgrid.gforge.inria.fr/tutorials.php][First grasp]]
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-05-02 mer. 9:27]
 :END:
@@ -207,5 +207,8 @@ state. Second and third, the /precomputation of state at specific time division
 points/ and /parallel prefix computation/: If we know our system very
 well or if I have an equation, we could use this data to
 predict their behavior. 
-
-
+*** 2018-05-02 Wednesday
+**** SimGrid :
+- MSG : Simple application-level simulator
+- SimDag : Directed Acyclic Graph (DAG), we assume vertices represent tasks ans edges represents constraints and/or data movements between tasks.
+We then use it to know what happened with the tasks. Who did what. It's very useful when simulation parallel application. See example ex1-2.c
