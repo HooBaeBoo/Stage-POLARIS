@@ -210,5 +210,13 @@ predict their behavior.
 *** 2018-05-02 Wednesday
 **** SimGrid :
 - MSG : Simple application-level simulator
-- SimDag : Directed Acyclic Graph (DAG), we assume vertices represent tasks ans edges represents constraints and/or data movements between tasks.
-We then use it to know what happened with the tasks. Who did what. It's very useful when simulation parallel application. See example ex1-2.c
+- SimDag : Directed Acyclic Graph (DAG), we assume vertices represent tasks and edges represents constraints and/or data movements between tasks.
+We then use it to know what happened with the tasks. Who did what. It's very useful when simulation parallel application. See example ex1-2.c. 
+To describe the graph we can either directly detail them in the c file or use the 2 loaders SimDag comes with :
+DAX or DOT. While DAX is a xml file to fill with general information such as tasks' names, I/O files, DOT format is a bit more human-friendly. DOT format will have you describe the graph with arrows, brackets. A more intuitive approach.
+#+CAPTION : example of DAX file
+[[./Ressources/DAX]]
+#+CAPTION : example of DOT file
+[[./Ressources/DOT]]
+*REMINDER* How to call the loader : SD_daxload(argv[_])
+
