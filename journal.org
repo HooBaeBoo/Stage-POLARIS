@@ -156,8 +156,11 @@ sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:57]
 :END:
-****** TODO [[http://execo.gforge.inria.fr/doc/latest-stable/][Execo]]
-***** TODO Intro : [[https://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org][Org-mode & Emacs]] [75%] 
+****** STARTED [[http://execo.gforge.inria.fr/doc/latest-stable/][Execo]]
+:LOGBOOK:
+- State "STARTED"    from "TODO"       [2018-05-02 mer. 15:42]
+:END:
+***** DONE Intro : [[https://github.com/alegrand/RR_webinars/blob/master/1_replicable_article_laboratory_notebook/index.org][Org-mode & Emacs]] [100%] 
 ****** DONE install Emacs 
 *REMINDER* To launch using a specific configuration [[https://raw.githubusercontent.com/alegrand/RR_webinars/master/1_replicable_article_laboratory_notebook/init.el][init.el]]
 #+BEGIN_SRC sh
@@ -171,7 +174,7 @@ emacs -q -l init.el
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
 :END:
-- [ ] Parallel and distributed simulation systems Chapter 6 : Time //
+- [X] Parallel and distributed simulation systems Chapter 6 : Time //
   Simulation
 - [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
 ***** TODO Intro : SimGrid[33%]
@@ -185,12 +188,12 @@ emacs -q -l init.el
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
 :END:
 **** Readings Synthesis :
-
+#+BEGIN_VERSE 
 In order to simulate a system one could think of several solutions. In
-fact, there are 2 in particular we could describe :
+fact, there are 2 in particular we could describe : \\
 *SPATIAL DECOMPOSTITION* : Each logical process is to compute all
 variables' values within the simulation time. This type of
-decomposition will not be treated, we will focus on the following 2nd type.
+decomposition will not be treated, we will focus on the following 2nd type.\\
 *TEMPORAL DECOMPOSITION* : In this solution, time is first divided into
 smaller chunks and each logical process is assigned a time chunk to
 work on. Here, processes are expected to perform a simulation of the
@@ -207,6 +210,7 @@ state. Second and third, the /precomputation of state at specific time division
 points/ and /parallel prefix computation/: If we know our system very
 well or if I have an equation, we could use this data to
 predict their behavior. 
+#+END_VERSE
 *** 2018-05-02 Wednesday
 **** SimGrid :
 - MSG : Simple application-level simulator
@@ -218,5 +222,17 @@ DAX or DOT. While DAX is a xml file to fill with general information such as tas
 [[./Ressources/DAX]]
 #+CAPTION : example of DOT file
 [[./Ressources/DOT]]
-*REMINDER* How to call the loader : SD_daxload(argv[_])
+*REMINDER* How to call the loader : SD_daxload(filename) / SD_dotload(filename)
+- Platform : /Understood how it works and what it represents but have no
+  clue what it's for. Feel like I'm missing the point./ 
+  - XML based description
+  - Lua based description
+- SMPI : Reimplementation of MPI on top of SimGrid. The laptop perform all computations with faked communications.
+[[https://www.ibm.com/support/knowledgecenter/en/SSZTET_10.1.0/smpi02/smpi02_host_list.html][Hostfile explanation]]
+- MPI : Message Passing Interface (MPI) 
+#+BEGIN_QUOTE
+A communication protocol for programming parallel computers. 
+#+END_QUOTE
+ (src : Wikipedia)
+
 
