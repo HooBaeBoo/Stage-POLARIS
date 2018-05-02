@@ -152,7 +152,7 @@ sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 **** OBJECTIVES : 
 ***** TODO Intro : [[https://www.grid5000.fr/mediawiki/index.php/Grid5000:Home][Grid5000]] [33%]
 ****** DONE Request Account
-****** STARTED First grip
+****** STARTED First grasp
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:57]
 :END:
@@ -174,8 +174,12 @@ emacs -q -l init.el
 - [ ] Parallel and distributed simulation systems Chapter 6 : Time //
   Simulation
 - [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
-***** TODO Intro : SimGrid[50%]
+***** TODO Intro : SimGrid[33%]
 ****** DONE Install
+****** STARTED [[http://simgrid.gforge.inria.fr/tutorials/simgrid-101.pdf][First grasp]]
+:LOGBOOK:
+- State "STARTED"    from "TODO"       [2018-05-02 mer. 9:27]
+:END:
 ****** STARTED Basics [[https://www.edx.org/course/introduction-to-python-absolute-beginner][Python & Jupyter]]
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
