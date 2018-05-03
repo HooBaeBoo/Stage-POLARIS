@@ -153,10 +153,6 @@ sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 ***** TODO Intro : [[https://www.grid5000.fr/mediawiki/index.php/Grid5000:Home][Grid5000]] [33%]
 ****** DONE Request Account
 ****** STARTED First grasp
-******* When using Grid'5000, you will typically:
-- connect, using SSH, to an access machine
-- connect from this access machine to a site frontend
-- on this site frontend, reserve resources (nodes), and connect to those nodes
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:57]
 :END:
@@ -174,18 +170,17 @@ emacs -q -l init.el
 ****** DONE identify key Shortcuts
 ****** DONE Upload Journal on [[https://github.com/HooBaeBoo/Stage-POLARIS][GitHub]]
 ***** TODO Discovering the topic[0%] : 
-****** STARTED Readings [1/2]
+****** STARTED Readings [0/2]
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
 :END:
 - [X] Parallel and distributed simulation systems Chapter 6 : Time //
   Simulation
 - [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
-***** TODO Intro : SimGrid[66%]
+***** TODO Intro : SimGrid[33%]
 ****** DONE [[http://simgrid.gforge.inria.fr/simgrid/latest/doc/install.html][Install]]
-****** DONE [[http://simgrid.gforge.inria.fr/tutorials.php][First grasp]]
+****** STARTED [[http://simgrid.gforge.inria.fr/tutorials.php][First grasp]]
 :LOGBOOK:
-- State "DONE"       from "STARTED"       [2018-05-03 jeu. 10:13]
 - State "STARTED"    from "TODO"       [2018-05-02 mer. 9:27]
 :END:
 ****** STARTED Basics [[https://www.edx.org/course/introduction-to-python-absolute-beginner][Python & Jupyter]]
@@ -223,11 +218,15 @@ predict their behavior.
 We then use it to know what happened with the tasks. Who did what. It's very useful when simulation parallel application. See example ex1-2.c. 
 To describe the graph we can either directly detail them in the c file or use the 2 loaders SimDag comes with :
 DAX or DOT. While DAX is a xml file to fill with general information such as tasks' names, I/O files, DOT format is a bit more human-friendly. DOT format will have you describe the graph with arrows, brackets. A more intuitive approach.
-#+CAPTION : example of DAX file
-[[./Ressources/DAX]]
-#+CAPTION : example of DOT file
-[[./Ressources/DOT]]
-*REMINDER* How to call the loader : SD_daxload(filename) / SD_dotload(filename)
+
+
+#+CAPTION: example of DAX file
+file:Ressources/DAX.png
+
+#+CAPTION: example of DOT file
+[[file:Ressources/DOT.png]]
+
+*REMINDER* How to call the loader : ~SD_daxload(filename) / SD_dotload(filename)~
 - Platform : /Understood how it works and what it represents but have no
   clue what it's for. Feel like I'm missing the point./ 
   - XML based description
@@ -238,20 +237,132 @@ DAX or DOT. While DAX is a xml file to fill with general information such as tas
 #+BEGIN_QUOTE
 A communication protocol for programming parallel computers. 
 #+END_QUOTE
- (src : Wikipedia)
-*** 2018-05-03 Thursday
-**** [[https://www.grid5000.fr/mediawiki/index.php/Execo_Practical_Session#Overview][Execo]] & [[https://www.grid5000.fr/mediawiki/index.php/Getting_Started][Grid5000]]: 
-/Note/ : Sample configuration file not found but there are config.py files.
-- Execo : Python API for controling unix process (local/remote, standalone/parallel).
-- Execo_ g5k : Set of tools and extensions for Grid5000 testbed.
-- Execo engine : tools to ease development of computer sciences experiments
-***** Conduct :
-We start by checking the installation using iPython tunning a simple 'Hello world test'
-#+BEGIN_SRC sh 
-ipython
-import execo
-execo.Process("echo 'hello world').run().stdout
-out : hello world
-#+END_SRC 
+(src : Wikipedia)
+*** MEETING NOTES FROM F.PERRONNIN & A.LEGRAND : 
+**** Discussions avec Florence et Arnaud
+***** Notebook jupyter:
+****** Install
+Surtout ce premier bout de code
+#+begin_src sh :results output :exports both
+sudo apt-get install jupyter-notebook
+sudo apt-get install python3-pip
+sudo apt-get install python3-matplotlib python3-numpy
+#+end_src
 
+Then following https://github.com/kirbs-/hide_code (note sure this is
+as useful as I thought though :()
+#+begin_src sh :results output :exports both
+sudo pip3 install hide_code
+sudo jupyter-nbextension  install --py hide_code
+jupyter-nbextension  enable --py hide_code
+jupyter-serverextension enable --py hide_code
+#+end_src
+
+Pour que l'export via latex fonctionne:
+#+begin_src shell :results output :exports both
+sudo apt-get install wkhtmltopdf
+sudo apt-get install texlive-xetex
+#+end_src
+
+Pour avoir R:
+#+begin_src shell :results output :exports both
+sudo apt-get python3-rpy2
+#+end_src
+
+Pour avoir le [[https://github.com/brospars/nb-git][git push/pull dans
+les notebooks]]:
+#+begin_src shell :results output :exports both
+jupyter nbextension install
+https://raw.githubusercontent.com/brospars/nb-git/master/nb-git.js
+jupyter nbextension enable nb-git
+#+end_src
+
+Autres extensions (code-folding):
+https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook
+#+begin_src shell :results output :exports both
+pip3 install jupyter_contrib_nbextensions
+# jupyter contrib nbextension install --user # not done yet
+#+end_src
+
+https://stackoverflow.com/questions/33159518/collapse-cell-in-jupyter-notebook
+(collapsible headings)
+
+Pour avoir le kernel R (from https://irkernel.github.io/installation/):
+#+begin_src R :results output graphics :file (org-babel-temp-file
+"figure" ".png") :exports both :width 600 :height 400 :session *R*
+install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ',
+'devtools', 'uuid', 'digest'))
+devtools::install_github('IRkernel/IRkernel')
+# Don’t forget step 2/2!
+IRkernel::installspec()
+#+end_src
+
+****** Export
+http://markus-beuckelmann.de/blog/customizing-nbconvert-pdf.html
+https://nbconvert.readthedocs.io/en/latest/
+
+#+begin_src sh :results output :exports both
+ipython3 nbconvert --to pdf Untitled.ipynb
+#+end_src
+****** Pour aller plus loin
+- https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/
+***** Expériences EXECO:
+  - https://www.grid5000.fr/mediawiki/index.php/BigData_hands-on_tutorial
+  -
+https://gitlab.inria.fr/grid5000/bigdata-tutorial/blob/master/Experiment.ipynb
+**** ssh et screen
+Dans ton ~.ssh/config~:
+#+BEGIN_EXAMPLE
+#######################################
+# Config globale
+
+#Host *
+ForwardAgent yes
+ForwardX11 yes
+
+Host *.g5k
+   User alegrand
+   ProxyCommand ssh alegrand@access.grid5000.fr "nc  -w 60 `basename %h
+.g5k` %p"
+   RemoteForward 1947 scm.gforge.inria.fr:22
+#+END_EXAMPLE
+
+Bien utiliser =screen= pour avoir des codes distants persistants:
+- =C-a C-d= pour détacher le screen
+- =screen -a -r= pour le rattacher quand on revient
+**** SimGrid
+- examples/smpi/NAS/ep.c
+- examples/platforms/*.xml
+
+
+*** MEETING SYNTHESIS:
+- Jupyter allows taking notes similarly to RStudio. We can dedicate cells to a specific language.
+*CAREFUL* : Avoid falling into easy traps like x = x + 10.
+- Python : it allows drawing graphs again similarly to r with its plot function.
+- Grid5000 : RECOMMENDED CONFIGURATION :
+  - **** ssh et screen
+Dans ton ~.ssh/config~:
+#+BEGIN_EXAMPLE
+#######################################
+# Config globale
+
+#Host *
+ForwardAgent yes
+ForwardX11 yes
+
+Host *.g5k
+   User alegrand
+   ProxyCommand ssh alegrand@access.grid5000.fr "nc  -w 60 `basename %h
+.g5k` %p"
+   RemoteForward 1947 scm.gforge.inria.fr:22
+#+END_EXAMPLE
+
+- SimGrid :In the future, we will focus on SMPI/MPI.
+  - SIMIX : creating processes
+  - MPI : Communication protocol send/receive, include smart types (example : if I want a column from a matrix, considering the matrix linear organization, I need to send regularly-spaced values), there's also broadcast
+  - SMPI : is just a simulation. When I do Smpicc followed by smpirun, things will be excecuted locally. How?
+    - I can describe the plateform using a xml file.
+    - *Advise* : Take a look at NAS.
+- *Clue* : to put in place the time parallelization will consist in running with smpirun and all settings needed and I will need to state for each process : when to start. [Nicol's algorithm]
+- Tools that could be needed in the future : /screen/ (for persitance).
 
