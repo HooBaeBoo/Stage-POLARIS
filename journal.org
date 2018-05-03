@@ -156,6 +156,10 @@ sudo dpkg -i rstudio-xenial-1.1.423-amd64.deb
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:57]
 :END:
+******* When using Grid'5000, you will typically:
+- connect, using SSH, to an access machine
+- connect from this access machine to a site frontend
+- on this site frontend, reserve resources (nodes), and connect to those nodes
 ****** STARTED [[http://execo.gforge.inria.fr/doc/latest-stable/][Execo]]
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-05-02 mer. 15:42]
@@ -170,17 +174,18 @@ emacs -q -l init.el
 ****** DONE identify key Shortcuts
 ****** DONE Upload Journal on [[https://github.com/HooBaeBoo/Stage-POLARIS][GitHub]]
 ***** TODO Discovering the topic[0%] : 
-****** STARTED Readings [0/2]
+****** STARTED Readings [1/2]
 :LOGBOOK:
 - State "STARTED"    from "TODO"       [2018-04-30 lun. 17:56]
 :END:
 - [X] Parallel and distributed simulation systems Chapter 6 : Time //
   Simulation
 - [ ] Parallel algorithms A. Legrand, H. Casanova & Y. Robert
-***** TODO Intro : SimGrid[33%]
+***** TODO Intro : SimGrid[66%]
 ****** DONE [[http://simgrid.gforge.inria.fr/simgrid/latest/doc/install.html][Install]]
-****** STARTED [[http://simgrid.gforge.inria.fr/tutorials.php][First grasp]]
+****** DONE [[http://simgrid.gforge.inria.fr/tutorials.php][First grasp]]
 :LOGBOOK:
+- State "DONE"       from "STARTED"  [2018-05-03 jeu. 10:13]
 - State "STARTED"    from "TODO"       [2018-05-02 mer. 9:27]
 :END:
 ****** STARTED Basics [[https://www.edx.org/course/introduction-to-python-absolute-beginner][Python & Jupyter]]
@@ -238,6 +243,28 @@ file:Ressources/DAX.png
 A communication protocol for programming parallel computers. 
 #+END_QUOTE
 (src : Wikipedia)
+*** 2018-05-03 Thursday
+**** [[https://www.grid5000.fr/mediawiki/index.php/Execo_Practical_Session#Overview][Execo]] & [[https://www.grid5000.fr/mediawiki/index.php/Getting_Started][Grid5000]]: 
+/Note/ : Sample configuration file not found but there are config.py files.
+- Execo : Python API for controling unix process (local/remote, standalone/parallel).
+- Execo_ g5k : Set of tools and extensions for Grid5000 testbed.
+- Execo engine : tools to ease development of computer sciences experiments
+***** Conduct :
+We start by checking the installation using iPython tunning a simple 'Hello world test'
+#+BEGIN_SRC sh 
+ipython
+import execo
+execo.Process("echo 'hello world').run().stdout
+out : hello world
+#+END_SRC 
+- We're about to need Grid'5000. We launch it.
+#+BEGIN_SRC sh
+ ssh nezzine@access.grid5000.fr
+#+END_SRC
+*Problem encountered* : Permission denied (publickey).\\
+*Solution* : Create a key and add it to Grid'5000 Account
+
+
 *** MEETING NOTES FROM F.PERRONNIN & A.LEGRAND : 
 **** Discussions avec Florence et Arnaud
 ***** Notebook jupyter:
@@ -333,7 +360,6 @@ Bien utiliser =screen= pour avoir des codes distants persistants:
 **** SimGrid
 - examples/smpi/NAS/ep.c
 - examples/platforms/*.xml
-
 
 *** MEETING SYNTHESIS:
 - Jupyter allows taking notes similarly to RStudio. We can dedicate cells to a specific language.
