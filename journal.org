@@ -15,6 +15,10 @@
 #+SEQ_TODO: TODO(t!) STARTED(s!) WAITING(w@) APPT(a!) | DONE(d!) CANCELLED(c!) DEFERRED(f!)
 
 * 2018
+TIP : Git add commit and push (src:StackOverflow)
+#+BEGIN_SRC sh
+  alias gacp='echo "Enter commit message -> " && read MSG && git add . && git commit -m "$MSG" && git push'
+#+END_SRC
 ** 2018-02 March
 *** 2018-02-12 Monday
 
@@ -414,7 +418,8 @@ as it creates [[https://github.com/pypa/pip/issues/5221][damage]].
 *Problem encountered* : X11 forwarding request failed on channel 0
 *Solution* : PENDING, tried : [[https://www.cyberciti.biz/faq/how-to-fix-x11-forwarding-request-failed-on-channel-0/][this]] : Unauthorized actions, will be reported.
 Retried : Worked! You'll find a template in ~Ressources/templates/ssh_config~ 
-**** Grid5000 Key commands :
+**** [[https://www.grid5000.fr/mediawiki/images/G5k_cheat_sheet.pdf][Grid5000 Key commands]] :
+***** Basics : 
 - To connect : 
 #+BEGIN_SRC sh
 ssh login@access.grid5000.fr
@@ -429,5 +434,37 @@ ssh site
 #+BEGIN_SRC sh
 scp myfile.c login@access.grid5000.fr:site/targetdirectory/mytargetfile.c
 #+END_SRC 
-- 
- 
+***** Resources :
+- Reserve NBR hosts in interactive mode : 
+ASAP :
+#+BEGIN_SRC sh 
+oarsub -l host/nodes=NBR -I
+#+END_SRC
+At specific time :
+#+BEGIN_SRC sh
+oarsub -l nodes=3 -r 'YYYY-MM-DD HH:MM:SS'
+#+END_SRC
+- Terminate reservation :
+#+BEGIN_SRC sh  
+exit
+#+END_SRC
+- Switch hosts :
+#+BEGIN_SRC sh
+oarsh [name of machine I want to switch to]
+#+END_SRC
+- List all hosts in my reservation :
+#+BEGIN_SRC sh
+uniq $OAR_NODEFILE
+#+END_SRC
+- Delete job :
+#+BEGIN_SRC sh
+oardel [job id]
+#+END_SRC
+- Selection of resources : 
+*TODO*
+- TIP : 
+  - Avoid termination :
+#+BEGIN_SRC sh
+oarsub "sleep 10d"
+oarsub -C ~OAR_JOB_ID~
+#+END_SRC
