@@ -413,5 +413,21 @@ as it creates [[https://github.com/pypa/pip/issues/5221][damage]].
 /Cf Meeting with Florence & Arnaud/ 
 *Problem encountered* : X11 forwarding request failed on channel 0
 *Solution* : PENDING, tried : [[https://www.cyberciti.biz/faq/how-to-fix-x11-forwarding-request-failed-on-channel-0/][this]] : Unauthorized actions, will be reported.
-
+Retried : Worked! You'll find a template in ~Ressources/templates/ssh_config~ 
+**** Grid5000 Key commands :
+- To connect : 
+#+BEGIN_SRC sh
+ssh login@access.grid5000.fr
+OR (if ssh config done)
+ssh site.g5k
+#+END_SRC 
+- Access a specific site (after connection):
+#+BEGIN_SRC sh
+ssh site
+#+END_SRC
+- Copy file to site home directory :
+#+BEGIN_SRC sh
+scp myfile.c login@access.grid5000.fr:site/targetdirectory/mytargetfile.c
+#+END_SRC 
+- 
  

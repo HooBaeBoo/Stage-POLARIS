@@ -1,0 +1,17 @@
+# SSH GRID'5000 : CONFIG FILE
+
+# INSTRUCTIONS :
+## /!\ DON'T FORGET TO REPLACE 'login' WTIH YOUR LOGIN 
+## PLACE THE FILE IN ~/.ssh/ FOLDER
+## RENAME AS 'config'
+
+
+Host g5k
+  User login
+  Hostname access.grid5000.fr
+  ForwardAgent no
+  
+Host *.g5k
+	User login
+	ProxyCommand ssh g5k -W "`basename %h .g5k`:%p"
+	ForwardAgent no
