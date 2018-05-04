@@ -391,4 +391,27 @@ Host *.g5k
     - *Advise* : Take a look at NAS.
 - *Clue* : to put in place the time parallelization will consist in running with smpirun and all settings needed and I will need to state for each process : when to start. [Nicol's algorithm]
 - Tools that could be needed in the future : /screen/ (for persitance).
+*** 2018-05-04 Friday :
+**** Installation Python & Jupyter :
+#+BEGIN_SRC sh
+sudo apt-get install python3-pip
+sudo apt-get install python3-matplotlib python3-numpy 
+sudo apt-get install jupyter-notebook
+#+END_SRC 
+*Problem encountered* : package jupyter-notebook doesn't exists
+*Solution* :
+#+BEGIN_SRC sh 
+pip install --user jupyter
+#+END_SRC 
+/Note/ : --user is used to install in a directory that doesn't requires root permissions.
+*CAREFUL* Avoid doing :
+#+BEGIN_SRC sh
+pip install --upgrade pip
+#+END_SRC
+as it creates [[https://github.com/pypa/pip/issues/5221][damage]].
+**** Configuration .ssh/config
+/Cf Meeting with Florence & Arnaud/ 
+*Problem encountered* : X11 forwarding request failed on channel 0
+*Solution* : PENDING, tried : [[https://www.cyberciti.biz/faq/how-to-fix-x11-forwarding-request-failed-on-channel-0/][this]] : Unauthorized actions, will be reported.
 
+ 
