@@ -21,7 +21,7 @@ int main(int argc, char **argv) {
   c2 = SD_task_create_comp_seq("c2", NULL, 5E9);
   c3 = SD_task_create_comp_seq("c3", NULL, 2E9);
   
-  // End-to-end communications : both source and destination are sequential tasks
+  // End-to-end communications : both source and destination are sequential tasks ARGS = name, data, bytes sent
   t1 = SD_task_create_comm_e2e("t1", NULL, 5e8);
   
   /* 

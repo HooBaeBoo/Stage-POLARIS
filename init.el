@@ -317,7 +317,9 @@ before runnind ant hen run the `cua--precommand-handler'"
       B[label=\"B\"]
       A->B
    }\n#+end_src" "<src lang=\"dot\">\n\n</src>"))
-
+(add-to-list 'org-emphasis-alist
+             '("//" (:foreground "red")
+               ))
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images) 
 (add-hook 'org-mode-hook 'org-display-inline-images)
 (add-hook 'org-mode-hook 'org-babel-result-hide-all)
