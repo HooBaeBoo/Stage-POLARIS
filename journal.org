@@ -226,10 +226,10 @@ DAX or DOT. While DAX is a xml file to fill with general information such as tas
 
 
 #+CAPTION: example of DAX file
-file:Ressources/DAX.png
+file:Ressources/img/DAX.png
 
 #+CAPTION: example of DOT file
-[[file:Ressources/DOT.png]]
+[[file:Ressources/img/DOT.png]]
 
 *REMINDER* How to call the loader : ~SD_daxload(filename) / SD_dotload(filename)~
 - Platform : /Understood how it works and what it represents but have no
