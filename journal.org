@@ -510,6 +510,10 @@ sudo openvpn ~Grid5000_VPN.ovpn~
 Problem : The connection test fails.
 
 SOLUTION 2 -> [[https://www.grid5000.fr/mediawiki/index.php/VPN#Launch_a_connection][Lauching a connection via the network-manager]] :
+#+BEGING_SRC sh
+sudo apt install network-manager-openvpn-gnome
+#+END_SRC
+
 UDP didn't work -> switching to TCP.
 Both seem to be working BUT : 
  ~ERR_CONNECTION_TIMED_OUT~
@@ -522,4 +526,12 @@ Following the guide, several problems arose :
 - file:Ressources/img/execo_fail.png
 Solution : changing number of nodes.
 
+
+- MPi : first manipulation of MPI on Grid5k
+Without execo :
+#+BEGIN_SRC sh 
+mpicc source.c -o app
+mpirun -H graphene-23.nancy.grid5000.fr,graphene-21.nancy.grid5000.fr ./app
+#+END_SRC
+Output : Got 42 from rank 0
 
