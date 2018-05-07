@@ -220,6 +220,7 @@ points/ and /parallel prefix computation/: If we know our system very
 well or if I have an equation, we could use this data to
 predict their behavior. 
 #+END_VERSE
+** 2018-05 May
 *** 2018-05-02 Wednesday
 **** SimGrid :
 - MSG : Simple application-level simulator
@@ -461,10 +462,64 @@ uniq $OAR_NODEFILE
 oardel [job id]
 #+END_SRC
 - Selection of resources : 
-*TODO*
+#+BEGIN_SRC sh
+oarsub -p "WANTED SETTINGS" -l nodes=nbr_nodes_wanted, walltime=expected_duration[HH:MM:SS]
+#+END_SRC
+-Extending reservation :
+#+BEGIN_SRC sh
+oarwalltime job_id +time_wanted
+#+END_SRC
 - TIP : 
   - Avoid termination :
 #+BEGIN_SRC sh
 oarsub "sleep 10d"
 oarsub -C ~OAR_JOB_ID~
 #+END_SRC
+*** 2018-05-07 Monday : Manipulations & exercices.
+[[https://www.grid5000.fr/mediawiki/index.php/BigData_hands-on_tutorial][BigData hands-on tutorial]]:
+#+BEGIN_SRC sh
+ssh nancy.g5k
+git clone https://gitlab.inria.fr/grid5000/bigdata-tutorial.git
+cd bigdata-tutorial/kameleon
+storage5k -a add -l chunks=3,walltime=24
+pip3 install --user jupyter
+echo 'export PATH=$PATH:~/.local/bin/' >> ~/.bashrc && . ~/.bashrc
+jupyter notebook --ip=$(hostname -f)
+#+END_SRC
+G5k VPN setting : (src : Grid5000.fr)
+-To start using Grid'5000 VPN, you first need to get a certificate:
+Go to your account management page, select "My account" and from the "Actions" drop-down list, select "Generate VPN certificate".*
+To generate a new certificate click on "Generate from Passphrase" (recommended).
+If you generated your certificate and private key your self, select "Sign public key".
+Your certificate will appear at the bottom of the page. 
+Click on "Download Files" to download an archive which includes the certificates and the configuration file needed to establish the VPN connexion.
+You must extract the archive content on your workstation. 
+Please choose a secure place to store those files: an attacker could use them to steal your identity in Grid'5000.
+From the folder : 
+#+BEGIN_SRC sh
+sudo apt install openvpn
+sudo openvpn Grid5000_VPN.ovpn
+#+END_SRC
+*PROBLEM* : 
+SOLUTION 1 -> Launching a connection via using command lines: 
+Changes were required to the config file : 
+dev tap -> dev tun
+#+BEGIN_SRC sh
+sudo openvpn ~Grid5000_VPN.ovpn~
+#+END_SRC 
+Problem : The connection test fails.
+
+SOLUTION 2 -> [[https://www.grid5000.fr/mediawiki/index.php/VPN#Launch_a_connection][Lauching a connection via the network-manager]] :
+UDP didn't work -> switching to TCP.
+Both seem to be working BUT : 
+ ~ERR_CONNECTION_TIMED_OUT~
+Connection never established!
+
+SOLUTION 3 -> OpenSSH SOCKS proxy
+
+Execo practical session :
+Following the guide, several problems arose :
+- file:Ressources/img/execo_fail.png
+Solution : changing number of nodes.
+
+
