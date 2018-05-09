@@ -525,7 +525,7 @@ Execo practical session :
 Following the guide, several problems arose :
 - file:Ressources/img/execo_fail.png
 Solution : changing number of nodes.
-
+-
 
 - MPi : first manipulation of MPI on Grid5k
 Without execo :
@@ -534,4 +534,44 @@ mpicc source.c -o app
 mpirun -H graphene-23.nancy.grid5000.fr,graphene-21.nancy.grid5000.fr ./app
 #+END_SRC
 Output : Got 42 from rank 0
+*** 2018-05-09 Wednesday
+Problem solved : G5kVPN  & Jupyter work! Following same steps!
+**** Pratical session part 2 MPI & Automation :
+***** [[https://www.grid5000.fr/mediawiki/index.php/Run_MPI_On_Grid%275000][MPI]] : 
+Found a good complete tutorial on basic MPI knowledge made by Wes Kendall (src www.mpitutorial.com)
+****** Hello world Grid5k : See ~mpi_hello_world.c~
+We reserve several nodes and get their names
+#+BEGIN_SRC sh
+oarsub -l nodes=2 -I
+uniq $OAR_NODEFILE
+#+END_SRC
+/NOTE/ : Why does it take so much time to get names?
+Or with execo :
+#+BEGIN_SRC python
+from execo import *
+from execo_g5k import *
+from execo_engine import *
+jobs  = oarsub([(OarSubmission("cluster=1/nodes=2", walltime=3600, job_type="allow_classic_ssh"), "lyon")])
+job_id, site = jobs[0]
+nodes = get_oar_job_nodes(job_id, site)
+nodes
+#+END_SRC
 
+Then we need to compile and run the code 
+#+BEGIN_SRC sh
+mpicc mpi_hello_world.c -o app
+mpirun -H NAME1 NAME2 NAME3 ./app
+OR
+mpirun -hostfile hostfile.txt ./app
+OR (if single machine)
+mpirun ./app
+#+END_SRC
+OUTPUT : Hello world from processor graphene-66.nancy.grid5000.fr, rank 0 out of 4 processors.
+****** MPI locally : 
+#+BEGIN_SRC sh
+mpicc mpi_hello_world.c -o mpi_hello_world
+mpirun mpi_hello_world
+OR
+mpirun -hostfile hostfile mpi_hello_world
+(HOSTFILE contains name of your laptop)
+#+END_SRC 
