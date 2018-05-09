@@ -539,11 +539,11 @@ Problem solved : G5kVPN  & Jupyter work! Following same steps!
 **** Pratical session part 2 MPI & Automation :
 ***** [[https://www.grid5000.fr/mediawiki/index.php/Run_MPI_On_Grid%275000][MPI]] : 
 Found a good complete tutorial on basic MPI knowledge made by Wes Kendall (src www.mpitutorial.com)
-****** Hello world Grid5k : See ~mpi_hello_world.c~
+****** Running MPI -> Hello world Grid5k : See ~mpi_hello_world.c~
 We reserve several nodes and get their names
 #+BEGIN_SRC sh
 oarsub -l nodes=2 -I
-uniq $OAR_NODEFILE
+uniq $OAR_NODE_FILE
 #+END_SRC
 /NOTE/ : Why does it take so much time to get names?
 Or with execo :
@@ -567,7 +567,7 @@ OR (if single machine)
 mpirun ./app
 #+END_SRC
 OUTPUT : Hello world from processor graphene-66.nancy.grid5000.fr, rank 0 out of 4 processors.
-****** MPI locally : 
+****** Running MPI -> MPI locally : 
 #+BEGIN_SRC sh
 mpicc mpi_hello_world.c -o mpi_hello_world
 mpirun mpi_hello_world
@@ -575,3 +575,25 @@ OR
 mpirun -hostfile hostfile mpi_hello_world
 (HOSTFILE contains name of your laptop)
 #+END_SRC 
+****** MPI [[https://www.youtube.com/watch?v=mzfVimVbguQ][Basic knowledge]] :
+- MPI Communicators (1 per group of processes):
+  - ~MPI_COMM_WORLD :~ All process become part of a single communicator. They can now communicate with each other
+  - Rank : Each process has a unique rank (communicator). Often rank 0 is associated with master.
+  - Message tag : allows differentiation between types of messages.
+  - Synchronous/Asynchronous : Wait and blocking when synchronous unlike async.
+  - P2P/Group communications : GC includes broadcast, reduce, scatter... functions
+    - Reduce : gathering values into one of the processes by some operation.
+    - Gather : gather values into a buffer in the root process.
+    - Scatter : Opposite of what gather does.
+    - Broadcast
+****** SMPI :
+- Confusing. Runs on a single node.Reduce memory footprint and simulation time.
+- Testing examples from [[ https://github.com/frs69wq/simgrid.git][here]] 
+*PROBLEM* : can't compile : 
+#+BEGIN_SRC sh
+smpicc -O2 -o ../bin/ep.A.1 ep.o randlc.o 
+/usr/bin/ld : ne peut ouvrir le fichier de sortie ../bin/ep.A.1 : Aucun fichier ou dossier de ce type
+collect2: error: ld returned 1 exit status
+#+END_SRC
+
+ 
