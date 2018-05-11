@@ -469,12 +469,17 @@ oarsub -p "WANTED SETTINGS" -l nodes=nbr_nodes_wanted, walltime=expected_duratio
 #+BEGIN_SRC sh
 oarwalltime job_id +time_wanted
 #+END_SRC
+- Check detailed infos :
+#+BEGIN_SRC sh
+oarstat -u login -f 
+#+END_SRC
 - TIP : 
   - Avoid termination :
 #+BEGIN_SRC sh
 oarsub "sleep 10d"
 oarsub -C ~OAR_JOB_ID~
 #+END_SRC
+
 *** 2018-05-07 Monday : Manipulations & exercices.
 [[https://www.grid5000.fr/mediawiki/index.php/BigData_hands-on_tutorial][BigData hands-on tutorial]]:
 #+BEGIN_SRC sh
@@ -597,3 +602,41 @@ collect2: error: ld returned 1 exit status
 #+END_SRC
 
  
+*** 2018-05-11 Friday : SMPI 
+**** Since it works on Grid5k : [[https://www.grid5000.fr/mediawiki/index.php/Getting_Started#Deploying_your_nodes_to_get_root_access_and_create_your_own_experimental_environment][Short Guide]] to setting up the environnement 
+#+BEGIN_SRC sh
+ssh site.g5k
+oarsub -I -l nodes=1,walltime=3:00 -t deploy
+kadeploy3 -f $OAR_NODE_FILE -e debian9-x64-base -k 
+ssh root@machine
+sudo apt-get install simgrid git
+#+END_SRC
+**** First programm : 
+We imagine a first program with a random number of process.
+The goal is to make them wait until they receive a message from process with lower rank, display their identity and send message to higher rank.
+file:Ressources/img/circle_desc.png
+The code can be found under ~SimGrid/examples/SMPI/Circle_discussion~ 
+*PROBLEMS ENCOUNTERED* : 
+****** XML file <!DOCTYPE>:
+#+BEGIN_QUOTE 
+Invalid XML (XML input line 2, state 2): Bad declaration <!DOCTYPE platform SYSTEM "http://simgrid.gforge.inria.fr/simgrid.dtd">
+If your are using a XML v3 file (check the version attribute in <platform>), please update it with ~tools/simgrid_update_xml.pl~
+#+END_QUOTE
+******* Solution : Weirdest problem. What I did is that I changed version to 3 used the ~simgrid_update_xml~ and it just worked somehow.
+****** XML file power & speed :
+#+BEGIN_QUOTE 
+Invalid XML (XML input line 6, state 41): Bad attribute `power' in `cluster' element start tag.
+Invalid XML (XML input line 5, state 41): Required attribute `speed' not set for `cluster' element.
+#+END_QUOTE
+******* Solution : replacing power with speed
+****** ~MPI_INIT~ : 
+#+BEGIN_QUOTE 
+~[root/CRITICAL] smpi_process_data() returned nullptr. You probably gave a nullptr parameter to MPI_Init. Although it's required by MPI-2, this is currently not supported by SMPI.~
+#+END_QUOTE
+******* Solution : Replace ~MPI_INIT(NULL, NULL)~ with ~MPI_INIT(&argc,&argv)~
+
+Results : 
+- Terminal :
+file:Ressources/img/circle_term.png
+- Vite :
+file:Ressources/img/circle_vite.png
