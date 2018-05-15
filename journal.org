@@ -638,4 +638,66 @@ file:Ressources/img/circle_term.png
 - Vite :
 file:Ressources/img/circle_vite.png
 *** 2018-05-14 Monday : Time parallel simulation
+Cf cahier de notes.
+Questions :
+- What kind of network?
+- Compare to seq?
+- Can I simulate whatever I want?
+=> Will have to state who starts and when.
+*** 2018-05-15 Tuesday
+**** Instructions A.Legrand
+
+  https://simgrid.github.io/SMPI_CourseWare/
+
+Sinon, dans ton journal, je vois que tu captures (en png) des sorties de
+terminaux. N'hésite pas à utiliser le support org-mode pour ça, c'est
+plus pratique. Tu fais "<b" puis "tab" et ça complète en un bloc shell
+que tu peux exécuter avec C-c C-c. N'hésite pas à passer me voir si tu
+as besoin.
+
+Pour résumer la discussion d'hier:
+- Je te disais qu'il n'y a probablement pas besoin de déployer ton image
+(c'est plus lent et ça induit des erreurs potentielles). J'ai
+probablement tort. Il est probable qu'au final, ça te simplifiera la vie
+car l'environnement par défaut de G5K est quand même un peu minimal. Tu
+pourras plus facilement installer ce dont tu as besoin. Donc continue
+comme tu as fait, c'est très bien.
+- [X] Installe SimGrid à partir des sources
+#+BEGIN_SRC sh
+apt-get install libboost-dev libboost-context-dev
+apt-get install default-jdk libgcj16-dev
+apt-get install liblua5.3-dev lua5.3
+#+END_SRC sh
+[[https://gforge.inria.fr/frs/?group_id=12][Download]] 
+#+BEGIN_SRC sh
+tar xf SimGrid-3.18.tar.gz
+cd SimGrid-3.18
+cmake -DCMAKE_INSTALL_PREFIX=/opt/simgrid .
+make
+make install
+#+END_SRC
+- [X] Simule ep avec griffon.xml. C'est un exemple sans intérêt mais trivial
+à mettre en place. Normalement, maintenant, tu sais faire ça en local
+sur ta machine.
+#+BEGIN_SRC sh
+cd examples/smpi/NAS
+make ep NPROCS=1 CLASS=S
+#+END_SRC
+*PROBLEM* : Unable to find the executable
+*SOLUTION* : Isolate needed code (Cf A.Legrand -> Minimalistic commit)
+- [X] Déploie un jupyter-notebook sur une frontend de G5K et vérifie que tu
+arrives bien à t'y connecter depuis ton laptop. See Monday 07/05
+#+BEGIN_SRC sh 
+pip3 install --user jupyter
+echo 'export PATH=$PATH:~/.local/bin/' >> ~/.bashrc && . ~/.bashrc
+jupyter notebook --ip=$(hostname -f)
+#+END_SRC
+- [X] Réserve (dans le notebook) 4 ou 5 noeuds d'un cluster.
+Cf Notebook : ep.
+- [ ] Lance smpirun
+ep à coup de execo.action.Remote et récupère les sorties standard.
+- On verra ensuite ensemble comment bien sauvegarder/organiser tout ça.
+
+***** Note meeting with teachers :
+- Ccmake, cmake, make : Cf cahier de notes.
 
