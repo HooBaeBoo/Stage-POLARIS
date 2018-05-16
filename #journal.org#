@@ -697,8 +697,7 @@ jupyter notebook --ip=$(hostname -f)
 #+END_SRC
 - [X] Réserve (dans le notebook) 4 ou 5 noeuds d'un cluster.
 Cf Notebook : EP.
-- [X] Lance smpirun ep à coup de execo.action.Remote
-- [X] récupère les sorties standard. (via ~smpi_results.txt)~
+- [ ] Lance smpirun ep à coup de execo.action.Remote et récupère les sorties standard.
 - On verra ensuite ensemble comment bien sauvegarder/organiser tout ça.
 
 ***** Note meeting with teachers :
@@ -711,4 +710,3 @@ sudo apt-get install cmake-curses-gui
 *** 2018-05-16 Wednesday 
 The class execo.action.Remote allows us to launch a command remotely on several hosts
 For each connection requested a ssh proccess is launched.
-**** Screen : 
