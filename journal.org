@@ -723,4 +723,37 @@ B : ssh A
 B : screen -ls
 A : screen -x <id>
 #+end_src
-***** Ttylog 
+***** Ttylog
+*** 2018-05-18 Friday MEETING VISIO
+**** Things to do :
+- [ ] ~Remote_smpi_env~ don't need to be root
+- [ ] Save image after deployment and use it next times to save time
+- [ ] Clone git repository on G5k frontend
+- [ ] Remote Emacs (ForwardX11) or sshfs
+#+begin_src shell :results output :exports both
+mount  -t ssh
+#+end_src
+Allow accessing remote repositories (those on G5k) locally.
+- [ ] Organize & save data :
+  - [ ] Add date to name of smpi results
+  - [ ] Use better structure of repositories
+  - [ ] Add cell with :
+#+begin_src shell :results output :exports both
+git add _____.txt
+git commit
+#+end_src
+To save results !
+- [ ] Versionning :
+  - [ ] Duplicate notebook for each experiments
+#+begin_src shell :results output :exports both
+git copy
+#+end_src
+It's going to take a lot of place locally but not on gitHub!
+   - [ ]  Take a few cells to indicate :
+     - Experiment id
+     - Git version
+     - Git status
+     - Software version
++ To use R : [[http://simgrid.gforge.inria.fr/contrib/R_visualization.php#org667a940][here]]
+
+ 
