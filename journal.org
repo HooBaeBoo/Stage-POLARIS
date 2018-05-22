@@ -726,17 +726,17 @@ A : screen -x <id>
 ***** Ttylog
 *** 2018-05-18 Friday MEETING VISIO
 **** Things to do :
-- [ ] ~Remote_smpi_env~ don't need to be root
-- [ ] Save image after deployment and use it next times to save time
-- [ ] Clone git repository on G5k frontend
+- [X] ~Remote_smpi_env~ don't need to be root : *PROBLEM* Without root it's executed locally
+- [ ] Save image after deployment and use it next times to save time : [[http://kameleon.imag.fr/grid5000_admin_tutorial.html#creating-a-grid-5000-environment][tutorial]]
+- [X] Clone git repository on G5k frontend
 - [ ] Remote Emacs (ForwardX11) or sshfs
 #+begin_src shell :results output :exports both
 mount  -t ssh
 #+end_src
 Allow accessing remote repositories (those on G5k) locally.
-- [ ] Organize & save data :
-  - [ ] Add date to name of smpi results
-  - [ ] Use better structure of repositories
+- [-] Organize & save data :
+  - [X] Add date to name of smpi results
+  - [X] Use better structure of repositories
   - [ ] Add cell with :
 #+begin_src shell :results output :exports both
 git add _____.txt
