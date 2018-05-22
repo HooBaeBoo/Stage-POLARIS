@@ -731,6 +731,10 @@ A : screen -x <id>
 - [X] Clone git repository on G5k frontend
 - [ ] Remote Emacs (ForwardX11) or sshfs
 #+begin_src shell :results output :exports both
+sshfs login@nancy.g5k:/home/nezzine ./
+#+end_src
+*PROBLEM* doesn't answer
+#+begin_src shell :results output :exports both
 mount  -t ssh
 #+end_src
 Allow accessing remote repositories (those on G5k) locally.
@@ -743,17 +747,27 @@ git add _____.txt
 git commit
 #+end_src
 To save results !
-- [ ] Versionning :
-  - [ ] Duplicate notebook for each experiments
+- [X] Versionning :
+  - [X] Duplicate notebook for each experiment
 #+begin_src shell :results output :exports both
 git copy
 #+end_src
 It's going to take a lot of place locally but not on gitHub!
-   - [ ]  Take a few cells to indicate :
+   - [X]  Take a few cells to indicate :
      - Experiment id
      - Git version
      - Git status
      - Software version
-+ To use R : [[http://simgrid.gforge.inria.fr/contrib/R_visualization.php#org667a940][here]]
+   - To use R : [[http://simgrid.gforge.inria.fr/contrib/R_visualization.php#org667a940][here]]
+*** 2018-05-22 Tuesday :
+Working on things to do from previous section.
+Tip :
+- When changing bashrc on frontend, use 
+#+begin_src shell :results output :exports both
+source ~/.bashrc
+#+end_src
+to force reload of bashrc.
 
+- Informations :
+  - I don't install SimGrid on frontend. What should I do for smpi*** version?
  
