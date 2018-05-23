@@ -771,3 +771,13 @@ to force reload of bashrc.
 - Informations :
   - I don't install SimGrid on frontend. What should I do for smpi*** version?
  
+*** 2018-05-23 Wednesday :
+-[ ] shhfs :
+Same command magically works.
+-[ ] r on jupyter :
+#+begin_src shell :results output :exports both
+pip install --user rpy2
+#+end_src
+*PROBLEM* : "Failed building wheel for rpy2"
+SOLUTION : update/upgrade r => version 3.4 (Someone to lean on)
+-[ ] Broadcast pgm
