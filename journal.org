@@ -729,7 +729,7 @@ A : screen -x <id>
 - [X] ~Remote_smpi_env~ don't need to be root : *PROBLEM* Without root it's executed locally
 - [ ] Save image after deployment and use it next times to save time : [[http://kameleon.imag.fr/grid5000_admin_tutorial.html#creating-a-grid-5000-environment][tutorial]]
 - [X] Clone git repository on G5k frontend
-- [ ] Remote Emacs (ForwardX11) or sshfs
+- [X] Remote Emacs (ForwardX11) or sshfs
 #+begin_src shell :results output :exports both
 sshfs login@nancy.g5k:/home/nezzine ./
 #+end_src
@@ -738,10 +738,10 @@ sshfs login@nancy.g5k:/home/nezzine ./
 mount  -t ssh
 #+end_src
 Allow accessing remote repositories (those on G5k) locally.
-- [-] Organize & save data :
+- [X] Organize & save data :
   - [X] Add date to name of smpi results
   - [X] Use better structure of repositories
-  - [ ] Add cell with :
+  - [X] Add cell with :
 #+begin_src shell :results output :exports both
 git add _____.txt
 git commit
@@ -772,12 +772,12 @@ to force reload of bashrc.
   - I don't install SimGrid on frontend. What should I do for smpi*** version?
  
 *** 2018-05-23 Wednesday :
--[ ] shhfs :
+- [X] shhfs :
 Same command magically works.
--[ ] r on jupyter :
+- [X] r on jupyter :
 #+begin_src shell :results output :exports both
 pip install --user rpy2
 #+end_src
 *PROBLEM* : "Failed building wheel for rpy2"
 SOLUTION : update/upgrade r => version 3.4 (Someone to lean on)
--[ ] Broadcast pgm
+- [ ] Broadcast pgm 
