@@ -728,6 +728,11 @@ A : screen -x <id>
 **** Things to do :
 - [X] ~Remote_smpi_env~ don't need to be root : *PROBLEM* Without root it's executed locally
 - [ ] Save image after deployment and use it next times to save time : [[http://kameleon.imag.fr/grid5000_admin_tutorial.html#creating-a-grid-5000-environment][tutorial]]
+To deploy image (reserve node + deploy) : 
+#+begin_src shell :results output :exports both
+oarsub -I t deploy
+kadeploy -a my_debian.yaml -f $OAR_NODEFILE
+#+end_src
 - [X] Clone git repository on G5k frontend
 - [X] Remote Emacs (ForwardX11) or sshfs
 #+begin_src shell :results output :exports both
