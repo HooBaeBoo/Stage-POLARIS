@@ -786,3 +786,5 @@ pip install --user rpy2
 *PROBLEM* : "Failed building wheel for rpy2"
 SOLUTION : update/upgrade r => version 3.4 (Someone to lean on)
 - [ ] Broadcast pgm 
+*** 2018-05-24 Thursday :
+- [ ] Broadcast pgm
