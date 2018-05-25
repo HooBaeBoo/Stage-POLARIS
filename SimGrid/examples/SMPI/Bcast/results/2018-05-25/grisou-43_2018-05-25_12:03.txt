@@ -1,0 +1,9 @@
+Launching broadcast test
+Parameters : min [2], max[3], N [6]
+MPI configuration done
+[0] Sleeping
+[1] Sleeping
+[1](i:2): Before Bcast, buf is 1
+[0](i:2): Before Bcast, buf is 7
+[0](i:2): After Bcast, buf is 7
+[1](i:2): After Bcast, buf is 7

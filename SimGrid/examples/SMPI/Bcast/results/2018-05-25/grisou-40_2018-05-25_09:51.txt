@@ -1,0 +1,12 @@
+argv[0]: 0
+argv[1]: smpirun
+argv[2]: 0
+argv[3]: 999
+argv[0]: 1
+argv[1]: smpirun
+argv[2]: 1
+argv[3]: 999
+[0]: Before Bcast, buf is 7
+[1]: Before Bcast, buf is 1
+[0]: After Bcast, buf is 7
+[1]: After Bcast, buf is 7

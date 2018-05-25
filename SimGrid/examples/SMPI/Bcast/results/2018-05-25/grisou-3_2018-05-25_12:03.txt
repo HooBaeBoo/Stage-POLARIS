@@ -1,0 +1,7 @@
+Launching broadcast test
+Parameters : min [0], max[1], N [6]
+MPI configuration done
+[0](i:0): Before Bcast, buf is 7
+[1](i:0): Before Bcast, buf is 1
+[0](i:0): After Bcast, buf is 7
+[1](i:0): After Bcast, buf is 7

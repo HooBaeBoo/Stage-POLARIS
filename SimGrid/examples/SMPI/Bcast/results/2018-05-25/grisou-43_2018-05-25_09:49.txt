@@ -1,0 +1,6 @@
+(-594782544)
+(-594485920)
+[0]: Before Bcast, buf is 7
+[1]: Before Bcast, buf is 1
+[0]: After Bcast, buf is 7
+[1]: After Bcast, buf is 7
