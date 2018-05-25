@@ -1,0 +1,143 @@
+Launching broadcast test
+Parameters : min [4], max[7], N [12]
+MPI configuration done
+[0] Sleeping
+[1] Sleeping
+[2] Sleeping
+[2](i:4): Before Bcast, buf is 2
+[3] Sleeping
+[3](i:4): Before Bcast, buf is 3
+[4] Sleeping
+[4](i:4): Before Bcast, buf is 4
+[5] Sleeping
+[5](i:4): Before Bcast, buf is 5
+[6] Sleeping
+[6](i:4): Before Bcast, buf is 6
+[7] Sleeping
+[7](i:4): Before Bcast, buf is 7
+[8] Sleeping
+[8](i:4): Before Bcast, buf is 8
+[9] Sleeping
+[9](i:4): Before Bcast, buf is 9
+[10] Sleeping
+[10](i:4): Before Bcast, buf is 10
+[11] Sleeping
+[11](i:4): Before Bcast, buf is 11
+[12] Sleeping
+[12](i:4): Before Bcast, buf is 12
+[13] Sleeping
+[13](i:4): Before Bcast, buf is 13
+[14] Sleeping
+[14](i:4): Before Bcast, buf is 14
+[15] Sleeping
+[15](i:4): Before Bcast, buf is 15
+[16] Sleeping
+[16](i:4): Before Bcast, buf is 16
+[17] Sleeping
+[17](i:4): Before Bcast, buf is 17
+[18] Sleeping
+[18](i:4): Before Bcast, buf is 18
+[19] Sleeping
+[19](i:4): Before Bcast, buf is 19
+[4](i:4): After Bcast, buf is 4
+[4](i:5): Before Bcast, buf is 4
+[1](i:4): Before Bcast, buf is 1
+[0](i:4): Before Bcast, buf is 7
+[5](i:4): After Bcast, buf is 4
+[5](i:5): Before Bcast, buf is 4
+[6](i:4): After Bcast, buf is 4
+[6](i:5): Before Bcast, buf is 4
+[8](i:4): After Bcast, buf is 4
+[8](i:5): Before Bcast, buf is 4
+[12](i:4): After Bcast, buf is 4
+[12](i:5): Before Bcast, buf is 4
+[5](i:5): After Bcast, buf is 4
+[5](i:6): Before Bcast, buf is 4
+[0](i:4): After Bcast, buf is 4
+[0](i:5): Before Bcast, buf is 4
+[7](i:4): After Bcast, buf is 4
+[7](i:5): Before Bcast, buf is 4
+[9](i:4): After Bcast, buf is 4
+[9](i:5): Before Bcast, buf is 4
+[10](i:4): After Bcast, buf is 4
+[10](i:5): Before Bcast, buf is 4
+[13](i:4): After Bcast, buf is 4
+[13](i:5): Before Bcast, buf is 4
+[14](i:4): After Bcast, buf is 4
+[14](i:5): Before Bcast, buf is 4
+[16](i:4): After Bcast, buf is 4
+[16](i:5): Before Bcast, buf is 4
+[6](i:5): After Bcast, buf is 4
+[6](i:6): Before Bcast, buf is 4
+[6](i:6): After Bcast, buf is 4
+[1](i:4): After Bcast, buf is 4
+[1](i:5): Before Bcast, buf is 4
+[2](i:4): After Bcast, buf is 4
+[2](i:5): Before Bcast, buf is 4
+[11](i:4): After Bcast, buf is 4
+[11](i:5): Before Bcast, buf is 4
+[9](i:5): After Bcast, buf is 4
+[9](i:6): Before Bcast, buf is 4
+[15](i:4): After Bcast, buf is 4
+[15](i:5): Before Bcast, buf is 4
+[7](i:5): After Bcast, buf is 4
+[7](i:6): Before Bcast, buf is 4
+[17](i:4): After Bcast, buf is 4
+[17](i:5): Before Bcast, buf is 4
+[18](i:4): After Bcast, buf is 4
+[18](i:5): Before Bcast, buf is 4
+[13](i:5): After Bcast, buf is 4
+[13](i:6): Before Bcast, buf is 4
+[3](i:4): After Bcast, buf is 4
+[3](i:5): Before Bcast, buf is 4
+[1](i:5): After Bcast, buf is 4
+[1](i:6): Before Bcast, buf is 4
+[10](i:5): After Bcast, buf is 4
+[10](i:6): Before Bcast, buf is 4
+[8](i:5): After Bcast, buf is 4
+[8](i:6): Before Bcast, buf is 4
+[19](i:4): After Bcast, buf is 4
+[19](i:5): Before Bcast, buf is 4
+[11](i:5): After Bcast, buf is 4
+[11](i:6): Before Bcast, buf is 4
+[7](i:6): After Bcast, buf is 4
+[14](i:5): After Bcast, buf is 4
+[14](i:6): Before Bcast, buf is 4
+[15](i:5): After Bcast, buf is 4
+[15](i:6): Before Bcast, buf is 4
+[17](i:5): After Bcast, buf is 4
+[17](i:6): Before Bcast, buf is 4
+[2](i:5): After Bcast, buf is 4
+[2](i:6): Before Bcast, buf is 4
+[3](i:5): After Bcast, buf is 4
+[3](i:6): Before Bcast, buf is 4
+[8](i:6): After Bcast, buf is 4
+[12](i:5): After Bcast, buf is 4
+[12](i:6): Before Bcast, buf is 4
+[10](i:6): After Bcast, buf is 4
+[16](i:5): After Bcast, buf is 4
+[16](i:6): Before Bcast, buf is 4
+[18](i:5): After Bcast, buf is 4
+[18](i:6): Before Bcast, buf is 4
+[19](i:5): After Bcast, buf is 4
+[19](i:6): Before Bcast, buf is 4
+[14](i:6): After Bcast, buf is 4
+[4](i:5): After Bcast, buf is 4
+[4](i:6): Before Bcast, buf is 4
+[2](i:6): After Bcast, buf is 4
+[9](i:6): After Bcast, buf is 4
+[11](i:6): After Bcast, buf is 4
+[12](i:6): After Bcast, buf is 4
+[0](i:5): After Bcast, buf is 4
+[0](i:6): Before Bcast, buf is 4
+[15](i:6): After Bcast, buf is 4
+[16](i:6): After Bcast, buf is 4
+[18](i:6): After Bcast, buf is 4
+[3](i:6): After Bcast, buf is 4
+[4](i:6): After Bcast, buf is 4
+[13](i:6): After Bcast, buf is 4
+[17](i:6): After Bcast, buf is 4
+[19](i:6): After Bcast, buf is 4
+[0](i:6): After Bcast, buf is 4
+[5](i:6): After Bcast, buf is 4
+[1](i:6): After Bcast, buf is 4

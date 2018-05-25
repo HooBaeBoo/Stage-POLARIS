@@ -1,0 +1,143 @@
+Launching broadcast test
+Parameters : min [9], max[12], N [12]
+MPI configuration done
+[0] Sleeping
+[1] Sleeping
+[2] Sleeping
+[2](i:9): Before Bcast, buf is 2
+[3] Sleeping
+[3](i:9): Before Bcast, buf is 3
+[4] Sleeping
+[4](i:9): Before Bcast, buf is 4
+[5] Sleeping
+[5](i:9): Before Bcast, buf is 5
+[6] Sleeping
+[6](i:9): Before Bcast, buf is 6
+[7] Sleeping
+[7](i:9): Before Bcast, buf is 7
+[8] Sleeping
+[8](i:9): Before Bcast, buf is 8
+[9] Sleeping
+[9](i:9): Before Bcast, buf is 9
+[10] Sleeping
+[10](i:9): Before Bcast, buf is 10
+[11] Sleeping
+[11](i:9): Before Bcast, buf is 11
+[12] Sleeping
+[12](i:9): Before Bcast, buf is 12
+[13] Sleeping
+[13](i:9): Before Bcast, buf is 13
+[14] Sleeping
+[14](i:9): Before Bcast, buf is 14
+[15] Sleeping
+[15](i:9): Before Bcast, buf is 15
+[16] Sleeping
+[16](i:9): Before Bcast, buf is 16
+[17] Sleeping
+[17](i:9): Before Bcast, buf is 17
+[18] Sleeping
+[18](i:9): Before Bcast, buf is 18
+[19] Sleeping
+[19](i:9): Before Bcast, buf is 19
+[9](i:9): After Bcast, buf is 9
+[9](i:10): Before Bcast, buf is 9
+[1](i:9): Before Bcast, buf is 1
+[0](i:9): Before Bcast, buf is 7
+[10](i:9): After Bcast, buf is 9
+[10](i:10): Before Bcast, buf is 9
+[11](i:9): After Bcast, buf is 9
+[11](i:10): Before Bcast, buf is 9
+[13](i:9): After Bcast, buf is 9
+[13](i:10): Before Bcast, buf is 9
+[5](i:9): After Bcast, buf is 9
+[5](i:10): Before Bcast, buf is 9
+[17](i:9): After Bcast, buf is 9
+[17](i:10): Before Bcast, buf is 9
+[10](i:10): After Bcast, buf is 9
+[10](i:11): Before Bcast, buf is 9
+[12](i:9): After Bcast, buf is 9
+[12](i:10): Before Bcast, buf is 9
+[6](i:9): After Bcast, buf is 9
+[6](i:10): Before Bcast, buf is 9
+[14](i:9): After Bcast, buf is 9
+[14](i:10): Before Bcast, buf is 9
+[7](i:9): After Bcast, buf is 9
+[7](i:10): Before Bcast, buf is 9
+[15](i:9): After Bcast, buf is 9
+[15](i:10): Before Bcast, buf is 9
+[18](i:9): After Bcast, buf is 9
+[18](i:10): Before Bcast, buf is 9
+[19](i:9): After Bcast, buf is 9
+[19](i:10): Before Bcast, buf is 9
+[1](i:9): After Bcast, buf is 9
+[1](i:10): Before Bcast, buf is 9
+[11](i:10): After Bcast, buf is 9
+[11](i:11): Before Bcast, buf is 9
+[11](i:11): After Bcast, buf is 9
+[16](i:9): After Bcast, buf is 9
+[16](i:10): Before Bcast, buf is 9
+[8](i:9): After Bcast, buf is 9
+[8](i:10): Before Bcast, buf is 9
+[0](i:9): After Bcast, buf is 9
+[0](i:10): Before Bcast, buf is 9
+[14](i:10): After Bcast, buf is 9
+[14](i:11): Before Bcast, buf is 9
+[6](i:10): After Bcast, buf is 9
+[6](i:11): Before Bcast, buf is 9
+[2](i:9): After Bcast, buf is 9
+[2](i:10): Before Bcast, buf is 9
+[3](i:9): After Bcast, buf is 9
+[3](i:10): Before Bcast, buf is 9
+[12](i:10): After Bcast, buf is 9
+[12](i:11): Before Bcast, buf is 9
+[18](i:10): After Bcast, buf is 9
+[18](i:11): Before Bcast, buf is 9
+[15](i:10): After Bcast, buf is 9
+[15](i:11): Before Bcast, buf is 9
+[4](i:9): After Bcast, buf is 9
+[4](i:10): Before Bcast, buf is 9
+[7](i:10): After Bcast, buf is 9
+[7](i:11): Before Bcast, buf is 9
+[8](i:10): After Bcast, buf is 9
+[8](i:11): Before Bcast, buf is 9
+[13](i:10): After Bcast, buf is 9
+[13](i:11): Before Bcast, buf is 9
+[16](i:10): After Bcast, buf is 9
+[16](i:11): Before Bcast, buf is 9
+[12](i:11): After Bcast, buf is 9
+[19](i:10): After Bcast, buf is 9
+[19](i:11): Before Bcast, buf is 9
+[2](i:10): After Bcast, buf is 9
+[2](i:11): Before Bcast, buf is 9
+[0](i:10): After Bcast, buf is 9
+[0](i:11): Before Bcast, buf is 9
+[9](i:10): After Bcast, buf is 9
+[9](i:11): Before Bcast, buf is 9
+[17](i:10): After Bcast, buf is 9
+[17](i:11): Before Bcast, buf is 9
+[7](i:11): After Bcast, buf is 9
+[13](i:11): After Bcast, buf is 9
+[15](i:11): After Bcast, buf is 9
+[1](i:10): After Bcast, buf is 9
+[1](i:11): Before Bcast, buf is 9
+[3](i:10): After Bcast, buf is 9
+[3](i:11): Before Bcast, buf is 9
+[4](i:10): After Bcast, buf is 9
+[4](i:11): Before Bcast, buf is 9
+[19](i:11): After Bcast, buf is 9
+[8](i:11): After Bcast, buf is 9
+[14](i:11): After Bcast, buf is 9
+[9](i:11): After Bcast, buf is 9
+[16](i:11): After Bcast, buf is 9
+[17](i:11): After Bcast, buf is 9
+[5](i:10): After Bcast, buf is 9
+[5](i:11): Before Bcast, buf is 9
+[0](i:11): After Bcast, buf is 9
+[3](i:11): After Bcast, buf is 9
+[1](i:11): After Bcast, buf is 9
+[10](i:11): After Bcast, buf is 9
+[18](i:11): After Bcast, buf is 9
+[4](i:11): After Bcast, buf is 9
+[2](i:11): After Bcast, buf is 9
+[5](i:11): After Bcast, buf is 9
+[6](i:11): After Bcast, buf is 9
