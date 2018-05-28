@@ -8,18 +8,24 @@ char class;
 
 #define TRUE 1
 #define FALSE 0
+#define DEBUG FALSE
 #define PARSIM(min, max, D, i)             \
   if (i < min)                             \
   {                                        \
     i = min;                               \
-    printf("[%d] Sleeping\n", world_rank); \
+    if (DEBUG)\
+      printf("[%d] Sleeping\n", world_rank); \
     MPI_sleep(D[world_rank]);              \
   }                                        \
   if (i >= max)                            \
   {                                        \
     break;                                 \
     S[world_rank] = MPI_Wtime();           \
-  }
+    for (int j = 0; j < world_size; j++)\
+    {\
+      printf("S[%d] : %ds\n",j,S[j]);\
+    }\
+  }\
 
 void MPI_sleep(double atime)
 {
@@ -41,31 +47,31 @@ int main(int argc, char **argv)
   // Iterations number
   int N = atoi(argv[5]);
 
+
   MPI_Init(&argc, &argv);
   int buf;
+
   // Get the number of processes
   int world_size;
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-  // Delay
+  double S[world_size];
   int D[world_size];
+
+  // Delay
   if (argc != 4 + world_size)
   {
-    printf("ERROR : incorrect number of args\n");
+    if (DEBUG) printf("ERROR : incorrect number of args\n");
     exit(-1);
   }
 
-  int test[world_size];
   for (int i = 0; i < world_size; i++)
   {
     D[i] = atoi(argv[4 + i]);
   }
-  for (int i = 0; i < world_size; i++)
-  {
-    printf(" (%d) test : %d \n", i, test[i]);
-  }
 
-  int S[world_size];
+
+
   // Get the rank of the process
   int world_rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
@@ -76,7 +82,7 @@ int main(int argc, char **argv)
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   int name_len;
   MPI_Get_processor_name(processor_name, &name_len);
-  if (world_rank == 0)
+  if (world_rank == 0&& DEBUG)
   {
     printf("Launching broadcast test\n");
     printf("Parameters : min [%d], max[%d], N [%d]\n", min, max, N);
@@ -86,12 +92,15 @@ int main(int argc, char **argv)
   for (int i = 0; i < N; i++)
   {
     PARSIM(min, max, D, i);
-    printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
+    if (DEBUG) printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
     MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
     buf = buf + world_rank;
-    printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
+    if (DEBUG) printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
   }
-
+for (int j = 0; j < world_size; j++)
+    {
+      printf("S[%d] : %1.2f\n",j,S[j]);
+    }
   MPI_Finalize();
   return 0;
 }
