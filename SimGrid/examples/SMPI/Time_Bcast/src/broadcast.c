@@ -97,10 +97,10 @@ int main(int argc, char **argv)
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
   }
-  for (int j = 0; j < world_size; j++)
-  {
-    printf("S[%d] : %1.2f\n", j, S[j]);
-  }
+  //for (int j = 0; j < world_size; j++)
+//  {
+    printf("From %d -> S[%d] : %1.2f\n",world_rank, world_rank, S[world_rank]);
+  //}
   MPI_Finalize();
   return 0;
 }
