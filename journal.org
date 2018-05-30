@@ -712,9 +712,9 @@ sudo apt-get install cmake-curses-gui
 The class execo.action.Remote allows us to launch a command remotely on several hosts
 For each connection requested a ssh proccess is launched.
 **** [[https://www.grid5000.fr/mediawiki/index.php/Screen][Screen]] + cf Meeting notes
-Ctrl+a d 
+Ctrl+a d
 screen -r <id>
-**** How do we get terminal output without using a file? Pistes : 
+**** How do we get terminal output without using a file? Pistes :
 ***** Screen :
 If we have 2 machines, lets say A and B. To have a single terminal for both, we would need to do these steps :
 #+begin_src shell :results output :exports both
@@ -728,7 +728,7 @@ A : screen -x <id>
 **** Things to do :
 - [X] ~Remote_smpi_env~ don't need to be root : *PROBLEM* Without root it's executed locally
 - [ ] Save image after deployment and use it next times to save time : [[http://kameleon.imag.fr/grid5000_admin_tutorial.html#creating-a-grid-5000-environment][tutorial]]
-To deploy image (reserve node + deploy) : 
+To deploy image (reserve node + deploy) :
 #+begin_src shell :results output :exports both
 oarsub -I t deploy
 kadeploy -a my_debian.yaml -f $OAR_NODEFILE
@@ -767,7 +767,7 @@ It's going to take a lot of place locally but not on gitHub!
 *** 2018-05-22 Tuesday :
 Working on things to do from previous section.
 Tip :
-- When changing bashrc on frontend, use 
+- When changing bashrc on frontend, use
 #+begin_src shell :results output :exports both
 source ~/.bashrc
 #+end_src
@@ -775,7 +775,7 @@ to force reload of bashrc.
 
 - Informations :
   - I don't install SimGrid on frontend. What should I do for smpi*** version?
- 
+
 *** 2018-05-23 Wednesday :
 - [X] shhfs :
 Same command magically works.
@@ -785,6 +785,49 @@ pip install --user rpy2
 #+end_src
 *PROBLEM* : "Failed building wheel for rpy2"
 SOLUTION : update/upgrade r => version 3.4 (Someone to lean on)
-- [ ] Broadcast pgm 
-*** 2018-05-24 Thursday :
 - [ ] Broadcast pgm
+*** 2018-05-24 Thursday - 2018-05-28 Monday :
+- [X] Broadcast pgm :
+We want to create a pgm where each process gets to send a broadcast message.
+To do this we're gonna use ~MPI_BROADCAST~
+*** 2018-05-30 Wednesday :
+Time // simulation :
+
+We start by creating a simple program that would a=have each nodes broadcast a certain number N of messages and make some calculations. It would more or less do this :
+
+	 for (int i = 0 ; i<N ; i++){
+		~MPI_Bcast()~
+		//Some calculations
+	}
+
+It’s going to take each node some time to make all the iterations and we could represent it that way :
+
+file:Ressources/img/tab_synth1.png 
+
+When simulating with smpi, each nodes that’s ready is going to be asked what it could do. Then equations are going to be resolved calculating the time taken. But this is not the main purpose of this project. To make a time parallel simulation we are going to fragment it.
+We are going to reserve some machines and have all the nodes work on a smaller chunk. Rather than having all of them work on 0-N, machine 1 is going to have the nodes work on 0-100 and machine 2 on 100-200 etc.
+
+To better understand what D is about, imagine what’s happening on machine 1. All the nodes have to iterate from i = 0 to i = 100. It’s going to take node 0 a certain amount of time, and node 1 a certain amount of time that could be the same or different from node 0 and same thing for all the other nodes. Basically, when a node p is finished we’re going to save the time it took in D[p]. It’s going to represents the final state of the process.
+For the first process, D equals 0 for each node, because we start from 0. For machine 2 however the answer is not that obvious. In fact, until machine 1 isn’t done we have no idea what its value is. And that’s where optimism kicks in. We ‘re just going to pretend we know and give it some random value or we could start with 0. Once machine 1 is finished we will compare and redo the simulation if needed.
+
+file:Ressources/img/tab_synth2.png
+
+So when machine 1 is finished we retrieve S which represents the time measured. To obtain D’, which is the next D for the corrected simulation D’[p]= S[p]-min(S)
+
+But how do we implement this?
+	First, we need a program (see broadcast.c). In this program as previously said we just broadcast and make some calculations. 
+	From the notebook we are going to divide the simulation between the machines. To divide the work equally between the machines we take into account the number of machines and the number of iterations N. The minimum i is going to be ((i*N)/number of (nodes)) and max ((i+1)*N)/number of (nodes))
+	The inital delay D is a null vector.
+	
+	On the program side the macro PARSIM retrieves parameters and controls the simulation. 
+Let p be a node, so when launching the program we receive these parameters :
+- Min : The i where it has to starts its iterations
+- Max : The i where it has to end it's iterations
+- D : explained sooner
+- i : current position
+If the current i is smaller we're going to move it to the min and sleep D[p]. If it’s higher than max then we’re finished, we save the value in S and write it in a file.
+
+Back to jupyter, we need to process the data. First we need to parse the file with the results which is exactly what the parser() function does. This might be improved in the future but for now a separate function makes the conversion from the tab with raw string in arrays to an array with actual data needed, ~tab_conv()~. And finally we calculate the new D’[].
+What's next?
+- [ ] dynamic recalculation according to D and S
+- [ ] the calls to make run are sequentials
