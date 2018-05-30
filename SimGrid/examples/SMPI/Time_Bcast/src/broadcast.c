@@ -22,7 +22,7 @@ char class;
     S[world_rank] = MPI_Wtime() - starttime; \
     break;                                   \
   }
-
+// Sleep function
 void MPI_sleep(double atime)
 {
   double starttime = MPI_Wtime();
@@ -36,7 +36,11 @@ void MPI_sleep(double atime)
 int main(int argc, char **argv)
 {
 
-  // Settings
+  /* SETTINGS :
+  MIN : inferior border for iterations
+  MAX : superior border for iterations
+  */
+
   int min = atoi(argv[3]);
   int max = atoi(argv[4]);
 
@@ -77,13 +81,16 @@ int main(int argc, char **argv)
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   int name_len;
   MPI_Get_processor_name(processor_name, &name_len);
+
   if (world_rank == 0 && DEBUG)
   {
     printf("Launching broadcast test\n");
     printf("Parameters : min [%d], max[%d], N [%d]\n", min, max, N);
     printf("MPI configuration done\n");
   }
+
   srand(time(NULL));
+
   for (int i = 0; i < N; i++)
   {
     PARSIM(min, max, D, i);
@@ -91,15 +98,15 @@ int main(int argc, char **argv)
       printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
     // MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
     MPI_Bcast(&buf, 1, MPI_INT, world_rank, MPI_COMM_WORLD);
+
+    // Random calculations
     buf = buf + world_rank;
-    sleep(rand()%2);
+    sleep(rand() % 2);
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
   }
-  //for (int j = 0; j < world_size; j++)
-//  {
-    printf("From %d -> S[%d] : %1.2f\n",world_rank, world_rank, S[world_rank]);
-  //}
+  printf("From %d -> S[%d] : %1.2f\n", world_rank, world_rank, S[world_rank]);
+
   MPI_Finalize();
   return 0;
 }
