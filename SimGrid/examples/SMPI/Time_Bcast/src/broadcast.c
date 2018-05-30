@@ -19,12 +19,8 @@ char class;
   }                                          \
   if (i >= max)                              \
   {                                          \
+    S[world_rank] = MPI_Wtime() - starttime; \
     break;                                   \
-    S[world_rank] = MPI_Wtime();             \
-    for (int j = 0; j < world_size; j++)     \
-    {                                        \
-      printf("S[%d] : %ds\n", j, S[j]);      \
-    }                                        \
   }
 
 void MPI_sleep(double atime)
@@ -48,6 +44,7 @@ int main(int argc, char **argv)
   int N = atoi(argv[5]);
 
   MPI_Init(&argc, &argv);
+  double starttime = MPI_Wtime();
   int buf;
 
   // Get the number of processes
@@ -86,14 +83,16 @@ int main(int argc, char **argv)
     printf("Parameters : min [%d], max[%d], N [%d]\n", min, max, N);
     printf("MPI configuration done\n");
   }
-
+  srand(time(NULL));
   for (int i = 0; i < N; i++)
   {
     PARSIM(min, max, D, i);
     if (DEBUG)
       printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
-    MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
+    // MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
+    MPI_Bcast(&buf, 1, MPI_INT, world_rank, MPI_COMM_WORLD);
     buf = buf + world_rank;
+    sleep(rand()%2);
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
   }
