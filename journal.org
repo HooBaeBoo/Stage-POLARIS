@@ -831,3 +831,27 @@ Back to jupyter, we need to process the data. First we need to parse the file wi
 What's next?
 - [ ] dynamic recalculation according to D and S
 - [ ] the calls to make run are sequentials
+*** 2018-05-31 Thursday :
+MEETING WITH FLORENCE P.
+
+Le script + instrumentation pour découper les séquences d'itérations
+sont en place.
+
+Le parser pour récupérer les résultats aussi. Les expériences se
+lancent depuis un notebook jupyter.
+
+Il faut:
+[résolution de bugs]
+- [ ] résoudre le bug qui donne (0,0,...0) comme résultat pour la dernière
+  machine => IS IT REALLY USEFUL? I MEAN WE DON'T REALLY CARE ABOUT THE LAST MACHINE?
+- [X] lancer ces séquences en parallèle (en même temps)
+[new features : dans l'ordre] =>  [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python/la-programmation-parallele-avec-threading][parallel python]]
+- [X] après récupération du vecteur de décalage D, relancer les
+  expériences en utilisant ce vecteur de décalage comme état initial
+  (d'abord sur 2 noeuds, puis sur un peu +)
+Done, but the values are a bit stange *TODO* : Ask whether they are coherent or not!
+- [ ]tester si les trajectoires se rejoignent en fin de slot
+-> Used an array called coherence testing if i and i+1 have the delay ! Need to work more on this.
+- [ ] tester la cohérence des trajectoires (cohérente = trajectoire
+  raccrochée à la trajectoire initiale) 
+- [ ] critère d'arrêt
