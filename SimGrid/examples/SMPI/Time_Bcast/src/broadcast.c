@@ -91,7 +91,7 @@ int main(int argc, char **argv)
 
   srand(time(NULL));
 
-  for (int i = 0; i < N; i++)
+  for (int i = 0; i <= N; i++)
   {
     PARSIM(min, max, D, i);
     if (DEBUG)
