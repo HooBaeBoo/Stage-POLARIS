@@ -842,16 +842,32 @@ lancent depuis un notebook jupyter.
 
 Il faut:
 [résolution de bugs]
-- [ ] résoudre le bug qui donne (0,0,...0) comme résultat pour la dernière
+- [X] résoudre le bug qui donne (0,0,...0) comme résultat pour la dernière
   machine => IS IT REALLY USEFUL? I MEAN WE DON'T REALLY CARE ABOUT THE LAST MACHINE?
+From Arnaud :
+Ce n'est pas un "bug" à proprement dit, mais c'est surtout
+qu'effectivement, on s'en fiche. Ceci dit, il serait bien de le
+capturer. Je n'ai pas de bonne idée là pour bien l'écrire mais on
+demandera autour de nous à l'occasion, perd pas de temps avec ça.
+Rajoute juste après la boucle le test sur la valeur de l'indice
+équivalent à que tu faisais habituellement.
 - [X] lancer ces séquences en parallèle (en même temps)
 [new features : dans l'ordre] =>  [[https://openclassrooms.com/courses/apprenez-a-programmer-en-python/la-programmation-parallele-avec-threading][parallel python]]
 - [X] après récupération du vecteur de décalage D, relancer les
   expériences en utilisant ce vecteur de décalage comme état initial
   (d'abord sur 2 noeuds, puis sur un peu +)
 Done, but the values are a bit stange *TODO* : Ask whether they are coherent or not!
-- [ ]tester si les trajectoires se rejoignent en fin de slot
+- [X] tester si les trajectoires se rejoignent en fin de slot
 -> Used an array called coherence testing if i and i+1 have the delay ! Need to work more on this.
 - [ ] tester la cohérence des trajectoires (cohérente = trajectoire
   raccrochée à la trajectoire initiale) 
 - [ ] critère d'arrêt
+** 2018-06 June
+*** 2018-06-04 Monday :
+- [X] tester si les trajectoires se rejoignent en fin de slot
+-> Used an array called coherence testing if i and i+1 have the delay ! Need to work more on this.
+*Wrong* : Need to test i-1 and i. If machines[i-1] and machines[i] have 
+- [ ] tester la cohérence des trajectoires (cohérente = trajectoire
+  raccrochée à la trajectoire initiale) 
+- [ ] critère d'arrêt
+
