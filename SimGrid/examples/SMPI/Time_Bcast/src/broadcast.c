@@ -19,16 +19,16 @@ char class;
   }                                          \
   if (i >= max)                              \
   {                                          \
-    S[world_rank] = MPI_Wtime() - starttime; \
+    S[world_rank] = MPI_Wtime(); \
     break;                                   \
   }
 // Sleep function
 void MPI_sleep(double atime)
 {
   double starttime = MPI_Wtime();
-  while ((MPI_Wtime() - starttime) < atime * 1000)
+  while ((MPI_Wtime() - starttime) < atime )
   {
-    sleep(1000);
+    sleep(1);
   };
   return;
 }
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
   }
-  printf("From %d -> S[%d] : %1.2f\n", world_rank, world_rank, S[world_rank]);
+  printf("From %d -> S[%d] : %1.2f       %1.2f\n", world_rank, world_rank, S[world_rank], starttime);
 
   MPI_Finalize();
   return 0;
