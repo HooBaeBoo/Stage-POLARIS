@@ -1,0 +1,2 @@
+./bcast --cfg=smpi/privatization:1 --cfg=tracing:yes --cfg=tracing/filename:smpi_simgrid.trace --cfg=tracing/smpi:yes --cfg=surf/precision:1e-9 --cfg=network/model:SMPI griffon.xml smpitmp-appJi80Wo
+Execution failed with code 134.
