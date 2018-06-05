@@ -865,9 +865,12 @@ Done, but the values are a bit stange *TODO* : Ask whether they are coherent or 
 ** 2018-06 June
 *** 2018-06-04 Monday :
 - [X] tester si les trajectoires se rejoignent en fin de slot
--> Used an array called coherence testing if i and i+1 have the delay ! Need to work more on this.
-*Wrong* : Need to test i-1 and i. If machines[i-1] and machines[i] have 
-- [ ] tester la cohérence des trajectoires (cohérente = trajectoire
+-> Used an array called join testing if i and i+1 have the delay !
+*Wrong!* : Need to test i-1 and i. Because in the loop data regarding i+1 is not computed yet!
+*Principle :* If machines[i-1] and machines[i] have Dprime and D equal we set the value of join[i-1] to True.
+- [X] tester la cohérence des trajectoires (cohérente = trajectoire
   raccrochée à la trajectoire initiale) 
-- [ ] critère d'arrêt
+To check if the path to the i^th process is coherent, we need to check it the cells of the array join from 0 to i are set to True. If yes then the path is coherent!  
+- [X] critère d'arrêt
+We stop if join is filled with Trues or if we simulated it len(nodes) times.
 
