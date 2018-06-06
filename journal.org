@@ -902,9 +902,12 @@ Few problems :
 - [X] Format of D for join
 *** 2018-06-06 Wednesday :
 - Goal for today :
-  - [-] Fix bug :
+  - [X] Fix bug :
     - [X] Time for the last rounds (Done yesterday)
-    - [ ] Values for Join are incorrect! Because of the format but even after!
+    - [X] Values for Join are incorrect! Because of the format but even after!
+I decided to use a matrix of array called D of size number of round max (= nodecount) * number of nodes (= nodecount).
+In D[j][i] I will put the delay for machine i in round j. Therefore if I want to test if they join I need to compare D[j-1][i] the delay I computed my path with and the delay the previous machine ended with, which equals delayer(i-1,...)
+  - [ ] Get last value
   - [ ] Comment more and change variables names to more intuitive ones
-  - [ ] Save all paths computed
+  - [X] Save all paths computed
   - [ ] Think of better strategy to reduce number of path uselessly computed
