@@ -908,6 +908,10 @@ Few problems :
 I decided to use a matrix of array called D of size number of round max (= nodecount) * number of nodes (= nodecount).
 In D[j][i] I will put the delay for machine i in round j. Therefore if I want to test if they join I need to compare D[j-1][i] the delay I computed my path with and the delay the previous machine ended with, which equals delayer(i-1,...)
   - [ ] Get last value
-  - [ ] Comment more and change variables names to more intuitive ones
+  - [X] Comment more and change variables names to more intuitive ones
   - [X] Save all paths computed
-  - [ ] Think of better strategy to reduce number of path uselessly computed
+  - [X] Compare to al previous path computed : Piste ~test_join~ 
+We retrieve all prrevious value computed using zip(*D)[i] Then we compare each value. we compute it for 0 and then we get the final value with "or" on following tests.
+Need to find another solution!
+  - [ ] Think of better strategy to reduce number of path uselessly computed :
+  -> Random between previous D and D prime
