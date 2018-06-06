@@ -1,0 +1,2 @@
+./bcast --cfg=smpi/privatization:1 --cfg=surf/precision:1e-9 --cfg=network/model:SMPI griffon.xml smpitmp-appRZ2mQO
+Execution failed with code 134.
