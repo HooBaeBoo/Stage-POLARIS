@@ -874,3 +874,37 @@ To check if the path to the i^th process is coherent, we need to check it the ce
 - [X] critère d'arrêt
 We stop if join is filled with Trues or if we simulated it len(nodes) times.
 
+*** 2018-06-05 Tuesday :
+- Seems to work. Focusing on testing and organizing code.
+- Very weird values for last rounds.
+
+MEETING with Florence P. :
+Les expériences avec récupération d'états et tests de cohérence sont codées.
+Il reste quelques petits bugs à corriger : 
+- comparaison des états D[ ] pas dans le même format => vérifier qu'à
+  chaque round, 1 trajectoire supplémentaire devient cohérente;
+- délai multiplié par 1000 (environ) à chaque round => bug?
+
+Ensuite dans l'algo de simulation parallèle on peut avoir des segments
+trajectoire qui se rejoignent sans être nécessairement cohérents avec la trajectoire
+initiale : on les remplacera
+par d'autres segments optimistes;
+
+Affinage de l'algo de simulation :
+
+Au round numéro k, la machine i >=k a calculé k morceaux de
+trajectoires différents pour son intervalle d'itérations; il y a donc
+k vecteurs D[ ] à comparer à l'état obtenu par le segment d'itérations
+précédentes
+
+Few problems : 
+- [X] S values are weird toward the end :  Way too big. Problem fixed : units were wrong (ms->s)
+- [X] Format of D for join
+*** 2018-06-06 Wednesday :
+- Goal for today :
+  - [-] Fix bug :
+    - [X] Time for the last rounds (Done yesterday)
+    - [ ] Values for Join are incorrect! Because of the format but even after!
+  - [ ] Comment more and change variables names to more intuitive ones
+  - [ ] Save all paths computed
+  - [ ] Think of better strategy to reduce number of path uselessly computed
