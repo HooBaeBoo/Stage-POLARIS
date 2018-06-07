@@ -911,7 +911,27 @@ In D[j][i] I will put the delay for machine i in round j. Therefore if I want to
   - [X] Comment more and change variables names to more intuitive ones
   - [X] Save all paths computed
   - [X] Compare to al previous path computed : Piste ~test_join~ 
-We retrieve all prrevious value computed using zip(*D)[i] Then we compare each value. we compute it for 0 and then we get the final value with "or" on following tests.
-Need to find another solution!
-  - [ ] Think of better strategy to reduce number of path uselessly computed :
-  -> Random between previous D and D prime
+We retrieve all previous values computed using zip(*D)[i] Then we compare each value. we compute it for 0 and then we get the final value with "or" on following tests.
+Need to find another solution
+*** 2018-06-07 Thursday :
+- [ ] CR à F.Boyer
+Changing the way we process information is going to change a lot in our code.
+Previously, each machine processed a part of the iterations, and we tried to match the initial state of i to the final state of i-1. The matching was saved in an array join.
+Now we want to save all the paths computed and not only keep the correct ones.
+
+Saving paths computed is pretty easy. We use an array called D[Round][machine] to store the D on each round for each node.
+
+With such a tool I could have a match with path computed previously, so I need to be able to spot that matching and join has to tell me wheter there is or not a path computed previously matching my current trajectory.
+Currently, we have the answer to that question using 
+~test_join[i-1] = any(all(x1 == x2 for x1, x2 in zip(delay,format_cmd(tab[k]))) for k in range(j))~
+So for each machine, we test the D of each round to the final state, or initial state expected.
+However, even if we have a match here we don’t know which path matched ! This will be further improved very soon.
+Second, there are several strategies :
+- I could decide at each round if it’s not a match, the new intial state is going to be the previous machines’ final state. This strategy is very easy to put in place. At each round, only the machine who didn’t match with the initial trajectory would have to recompute, So I’d have to compute starting for the last « True » in join.
+file:Ressources/img/simu_fixe.jpg
+- But I could also decide to randomly chose a new initial state. If so then when in round k, the initial state won’t be chosen randomly as the true initial state is available. We’ll the test if there’s a matching and we’ll need to know which path matched and continue computation at the end of the path that matched. Path could be from different rounds.
+file:Ressources/img/simu_random.jpg
+
+- Currently I can detect if a final state matches an intial state, but I can't know which one -> Change it so I can get the index
+- ith process must keep on computing as long as the trajectory to ith process is not coherent
+- Forcer le départ= de l'état final pour un processus i au round i parce que c'est forcément la bonne trajectoire
