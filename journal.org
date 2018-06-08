@@ -1,3 +1,4 @@
+git pull
 # -*- mode: org -*-
 # -*- coding: utf-8 -*-
 #+STARTUP: overview indent inlineimages logdrawer
@@ -935,3 +936,5 @@ file:Ressources/img/simu_random.jpg
 - Currently I can detect if a final state matches an intial state, but I can't know which one -> Change it so I can get the index
 - ith process must keep on computing as long as the trajectory to ith process is not coherent
 - Forcer le départ= de l'état final pour un processus i au round i parce que c'est forcément la bonne trajectoire
+*** 2018-06-08 Friday :
+file:Ressources/img/path.jpg
