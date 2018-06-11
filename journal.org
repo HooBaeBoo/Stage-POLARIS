@@ -1,4 +1,3 @@
-git pull
 # -*- mode: org -*-
 # -*- coding: utf-8 -*-
 #+STARTUP: overview indent inlineimages logdrawer
@@ -938,3 +937,42 @@ file:Ressources/img/simu_random.jpg
 - Forcer le départ= de l'état final pour un processus i au round i parce que c'est forcément la bonne trajectoire
 *** 2018-06-08 Friday :
 file:Ressources/img/path.jpg
+*** 2018-06-11 Monday :
+- [ ] Why do we always have to restart the next simulation using the final state of i-1 as the new initial state? Of course if we're at round n then we have to do this for machine n because it is the right path. But that's not true for all machines above n.
+So we're going to use modes : Fix, Random, random inferior, random superior. The "fix" mode is what we did up until now : initial state = final state. Random is where the new initial state is generated randomly. Random inferior is where the new inital state is generated randomly with the previous machine final state as a upper limit. Random superior is the with lower limit.
+- [ ] Add row to D : When I first created D I gave it a j*nodecount size. D is supposed to store all data regarding delays.
+Let's take a example to show what's wrong with such a size : We'll take 2 machines so 2 rounds.
+In D[0][machine-x], I'm going to store the initial D. 
+In D[1][machine-x], what do I store? The final state of machine[i-1]? Or the new initial state? If we are in "FIX" mode then those final = initial so there's no problem.
+However if we use another mode, those are different!
+Here's the solution : We need to know D[j][i] as the final state off i-1 to compute path[] values. In other words to know if there's a coherent path. So we could set the value of D[j][i] to final of i-1 then compute path then if a path wasn't found set it to a value according to the mode.
+**** MEETING :
+Re-définition de la structure D mémorisant les décalages:
+Notation:
+les $t_i$ sont les itérations de l'application parallèle initiale
+les $p_i$ les processeurs virtuels (simulés)
+les $q_i$ les processeurs réels utilis;es pour la simulation parallèle
+$r_k$ round numéro k
+$T_{t_1,t_2}$ le temps entre le proc (virtuel) de décalage nul au temps $t_1$
+et celui de décalage nul (le 1er qui a fini) au temps $t_2$. Pour
+avoir le temps total d'exécution de l'application parallèle il faudra
+donc faire \sum T_{t_i,t_{i+1}}$ + decalage final.
+
+Les slots doivent faire toujours la même durée (même si elle peut
+varier d'un slot à l'autre) donc la structure de donnée pour recoller
+les morceaux est en 2 parties :
+$l: t_1 \rightarrow t_2$ (1 seul $T_2$ possible pour un $t_1$)
+$sim: t_1,D_1 \rightarrow D_2 [optionnellement: (T_{t1,t2},r,q)]$
+
+$t_curr, D_curr$.
+
+Ensuite il y aura plusieurs heuristiques à regarder:
+- choix des tailles de slots / réaffectation des processeurs qui ont
+  "fini" (trajectoire cohérente) : schéma adaptatif, catch me if you
+  can... 
+- choix des points de départs (0 au début, puis le D2 du slot
+  précédent, mais si on fait plus de trajectoires?)
+- structure ~To_explore~ {(t,D)} des fragments de trajectoire à
+  calculer.
+On doit quand même vérifier si ce segment doit vraiment être exploré
+(peut avoir déjà été couvert par des trajectoires qui fusionnent)
