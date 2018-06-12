@@ -976,3 +976,26 @@ Ensuite il y aura plusieurs heuristiques à regarder:
   calculer.
 On doit quand même vérifier si ce segment doit vraiment être exploré
 (peut avoir déjà été couvert par des trajectoires qui fusionnent)
+*** 2018-06-12 Tuesday :
+t_curr is the current position of the coherent path
+D_curr is the current delay associated to that coherent path
+file:Ressources/img/t_cur_D_curr.png
+Therefore we initialize t_curr to 0 and D_curr to '0...0'
+Once we've set the fragment size we can compute the size of the last slot.
+The size of the last slot equals N(=number of iterations)% ~fragment_size~
+
+Now that we fragmented our environnement for the simulation we need to configure our machines and to decide which paths to explore.
+The paths to explore are going to be stored in a structure of type collections.dequeue. Since we're going to take tasks FIFO, that structure semmed to be the more suited.
+
+How many machines do we need to configure?
+If I have more paths to explore than machines available then we should configure all of them. Otherwise we are only going to configure enough machines to work on all the task left. Therefore we just need to take the min of these 2.
+
+The MIN the machine has to work on is retrievable from ~To_explore~. The MAX can easily be computed adding the fragment size
+
+After launching and ending the simulation we need to process the gathered data.
+First we need to compute the new D : Dprime. This can be done using the delayer function.
+Then, we need to save those paths computed. We'll use nested dictionaries for that.
+sim = { t : {D : (Dprime,round,q)}
+file:Ressources/img/sim.png
+
+Once Dprime is computed we just add it to sim and for now to new paths to explore 
