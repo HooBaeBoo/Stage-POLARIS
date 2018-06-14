@@ -1011,5 +1011,13 @@ We changes our delayer function so we could get more data back when calling it.
 Now it returns a list of D and min(S). We could have returned S but it has not been done that way to minimize further data process and because we only need min(S).
 *** 2018-06-14 Thursday :
 - [X] Check if the way I compute T is correct
-To compute ~total_execution_time~ we add min(S) of each coherent path and max(D) of the last paht computed.
-
+To compute ~total_execution_time~ we add min(S) of each coherent path and max(D) of the last paht computed
+**** Configuring the simulation :
+To study parallel simulation let's add a few parameters :
+***** Initial state :
+For all the fragments except for the first one why should it always be 0? Let's randomly select it
+***** Modes :
+Again, what if limiting ourselves to restarting from previous fragment final state was actually, lowering the probability of computing a correct path?
+We'll create 4 modes (see description with previous structure :  2018-06-07)
+***** Options :
+****** Catch me if you can.
