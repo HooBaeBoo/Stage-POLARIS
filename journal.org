@@ -1019,5 +1019,9 @@ For all the fragments except for the first one why should it always be 0? Let's 
 ***** Modes :
 Again, what if limiting ourselves to restarting from previous fragment final state was actually, lowering the probability of computing a correct path?
 We'll create 4 modes (see description with previous structure :  2018-06-07)
+- [X] FIX
+- [X] RAND
+- [X] RAND SUP
+- [X] RAND INF
 ***** Options :
 ****** Catch me if you can.
