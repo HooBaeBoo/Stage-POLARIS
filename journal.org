@@ -999,3 +999,17 @@ sim = { t : {D : (Dprime,round,q)}
 file:Ressources/img/sim.png
 
 Once Dprime is computed we just add it to sim and for now to new paths to explore 
+*** 2018-06-13 Wednesay : 
+What is Tt1-t2?
+We need it to know how much time the simulation took.
+- [ ] Chercher outil pour dessiner graphes complexes.
+file:Ressources/img/Tt1-t2.jpg
+PGM : 
+We'll use variable ~total_execution_time~ initialized to 0. And every time we move ~t_curr~ up we will update ~execution_time_value~.
+T is stored in our dict sim as the 4th field and is compute at each round. 
+We changes our delayer function so we could get more data back when calling it.
+Now it returns a list of D and min(S). We could have returned S but it has not been done that way to minimize further data process and because we only need min(S).
+*** 2018-06-14 Thursday :
+- [X] Check if the way I compute T is correct
+To compute ~total_execution_time~ we add min(S) of each coherent path and max(D) of the last paht computed.
+
