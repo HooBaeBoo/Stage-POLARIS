@@ -1025,3 +1025,14 @@ We'll create 4 modes (see description with previous structure :  2018-06-07)
 - [X] RAND INF
 ***** Options :
 ****** Catch me if you can.
+*** 2018-06-18 Monday :
+Problems solved : 
+- [X] if the size of the last slot is different, the final incrementation has to take it into account!
+min(~t_curr+fragment_size~,N)
+- [-] check parameters are correct!
+  - [X] ~fragment_size~ < N
+  - [ ] Correct modes
+A few problems with the new ways of creating initial states. Here is what what we are trying to do:
+file:Ressources/img/loop.png
+- What should the upper limit of the Random be? Twice max of Dprime
+- Infinite loop : /!\ Initial state of the path linked to initial one has to be added with FIX mode
