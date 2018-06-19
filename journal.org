@@ -1036,3 +1036,10 @@ A few problems with the new ways of creating initial states. Here is what what w
 file:Ressources/img/loop.png
 - What should the upper limit of the Random be? Twice max of Dprime
 - Infinite loop : /!\ Initial state of the path linked to initial one has to be added with FIX mode
+*** 2018-06-19 Tuesday :
+- [X] infinite loop : At some point ~To_explore~ becomes empty. Wrong condition : if(MAX!=t_curr) should be if(t!=t_curr)
+- [X] testing value that doesn't exists yet : Dprime in sim[MAX]
+Solution : try :
+                        bool = not Dprime in sim[MAX]
+                    except KeyError:
+                        bool = True        
