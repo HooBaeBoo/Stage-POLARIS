@@ -1039,7 +1039,32 @@ file:Ressources/img/loop.png
 *** 2018-06-19 Tuesday :
 - [X] infinite loop : At some point ~To_explore~ becomes empty. Wrong condition : if(MAX!=t_curr) should be if(t!=t_curr)
 - [X] testing value that doesn't exists yet : Dprime in sim[MAX]
-Solution : try :
-                        bool = not Dprime in sim[MAX]
-                    except KeyError:
-                        bool = True        
+Solution : We will use a boolean variable to test if the final path obtained has already been computed before. To solve the problem of testing a value that doesn't exist yet we'll just use exceptions as following :
+try :
+   caught = Dprime in sim[MAX]
+except KeyError:
+   caught = False        
+*** 2018-06-20 Wednesday :
+After several tests it seems all the different ways of generating a Dprime work. But there's a lot of data displayed so :
+To make it more readable we will start using colors, functions for repetitive lines.
+printc print a string with with the wanted color and background. A wrong entry will just print it black on a white background.
+~generate_Dprime~ compute the Dprime given a lower and upper border. Problem was the lower border could either be an int or a list we'd need to process.
+I just separated the two cases.
+*QUESTION* What's better ? Having less lines possible to make it more readable of add a few lines to save a few computations?
+It's still very hard to actually know if the time parallel simulation was efficient. When fragments size is small I can just read it but when it becomes bigger it's a bit hard to know.
+*** 2018-06-21 Thursday :
+First we are going to lower the catch me check frequency because obviously at some point there are going to be too many paths to compare and this is going to make us lose efficiency. Check every 2^k.
+I used a variable ~catch_me_ind~ so I can know when to check if something was caught indeed. And if I give the right to check if something was caught I increment the variable ~catch_me_ind~
+*QUESTION* To improve the probability of computing a correct initial state why not trying to learn how much time each process approximately takes? A bit like "rock paper scissors" homework?
+Solving yesterday's problem to see the time parallel simulation is efficient or not, we use to variables :
+- ~merged_paths~ : At the end of a computation session how many new fragments are connected to the coherent paths? If it's more than one then time parallel simulation actually made us gain in efficiency and it is a success! here comes the second variable :
+- success : Initially set to False, if at some point more than 2 fragments were connected to coherent path then it is a success and we set it to True. This variable is displayed at the end.
+Now how could we improve : ~To_explore~ is for the moment a rather silly structure. We just analyze what we're told to without really thinking. But what is really worth analysing? 
+Because, this way of computing can make us waste time in the worst case because it requires even more rounds than a sequential computation
+file:Ressources/img/worst_case_dumb_toexplore.png
+"Ideas" How we could improve it :
+- Always compute the coherent path. That way in the worst case, it'd be a sequential simulation
+file:Ressources/img/worst_case_prefetch.png
+- Improve probability of guessing the right D :
+  - Within and outside of a simulation, save and learn the Ds to make better guessing.
+  - Not always starting from '0...0', I mean what's the odd of such a thing happening?
