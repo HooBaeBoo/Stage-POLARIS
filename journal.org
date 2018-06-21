@@ -1069,3 +1069,5 @@ file:Ressources/img/worst_case_prefetch.png
   - Within and outside of a simulation, save and learn the Ds to make better guessing.
   - Not always starting from '0...0', I mean what's the odd of such a thing happening?
   - Adjust bounds at each round
+[[http://www.lacl.fr/pekergin/checkbound/transparentspresentations/checkParallelSimul.pdf][Lecture 1]]
+[[http://athene-forschung.unibw.de/doc/86163/86163.pdf][Lecture 2]]
