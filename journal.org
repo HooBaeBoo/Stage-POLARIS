@@ -1068,3 +1068,4 @@ file:Ressources/img/worst_case_prefetch.png
 - Improve probability of guessing the right D :
   - Within and outside of a simulation, save and learn the Ds to make better guessing.
   - Not always starting from '0...0', I mean what's the odd of such a thing happening?
+  - Adjust bounds at each round
