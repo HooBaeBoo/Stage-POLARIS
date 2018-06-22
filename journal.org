@@ -862,7 +862,7 @@ Done, but the values are a bit stange *TODO* : Ask whether they are coherent or 
 - [ ] tester la cohérence des trajectoires (cohérente = trajectoire
   raccrochée à la trajectoire initiale) 
 - [ ] critère d'arrêt
-** 2018-06 June
+*** 2018-06 June
 *** 2018-06-04 Monday :
 - [X] tester si les trajectoires se rejoignent en fin de slot
 -> Used an array called join testing if i and i+1 have the delay !
@@ -1071,3 +1071,14 @@ file:Ressources/img/worst_case_prefetch.png
   - Adjust bounds at each round
 [[http://www.lacl.fr/pekergin/checkbound/transparentspresentations/checkParallelSimul.pdf][Lecture 1]]
 [[http://athene-forschung.unibw.de/doc/86163/86163.pdf][Lecture 2]]
+*** 2018-06-22 Friday : 
+Very weird day : Impossible to deploy env.
+#+BEGIN_QUOTE 
+Invalid file : Unable to get the checksum
+OR
+Invalid request on kadeplou.rennes.grid5000.fr:25300
+#+END_QUOTE
+Tried : restart Kernel, and relaunching -> Same
+SOLVED : Instead of using file deploy with the name of the env. 
+=> This resolve the deploy pb but can't install anything with it! Which is weird!
+Last try : Restart Kernel, relaunch deploy with file -> It works. What happened? Why? ~T_T~
