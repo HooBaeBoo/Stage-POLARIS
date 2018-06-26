@@ -862,7 +862,7 @@ Done, but the values are a bit stange *TODO* : Ask whether they are coherent or 
 - [ ] tester la cohérence des trajectoires (cohérente = trajectoire
   raccrochée à la trajectoire initiale) 
 - [ ] critère d'arrêt
-*** 2018-06 June
+** 2018-06 June
 *** 2018-06-04 Monday :
 - [X] tester si les trajectoires se rejoignent en fin de slot
 -> Used an array called join testing if i and i+1 have the delay !
@@ -1082,3 +1082,41 @@ Tried : restart Kernel, and relaunching -> Same
 SOLVED : Instead of using file deploy with the name of the env. 
 => This resolve the deploy pb but can't install anything with it! Which is weird!
 Last try : Restart Kernel, relaunch deploy with file -> It works. What happened? Why? ~T_T~
+**** MEETING :
+- MISUNDERSTANDING : (Cf 2018-06-21) When adding a task to ~To_explore~ indeed we do not append it but add it to head (append left)!
+- Broadcast.c :
+  - Increase precision %g to get a value different from 0
+  - Sort sim
+  - When testing use more NPROCS
+  - Remove sleeps
+  - Send more (inc buff)
+*** 2018-06-25 Monday :
+**** TASKS :
+- [-] Appendleft When adding a task to ~To_explore~ indeed we do not append it but add it to head (append left)!
+  - [X] Appendleft
+  - [ ] sorted
+- Broadcast.c :
+  - [X] Increase precision %g to get a value different from 0
+  - [ ] Sort sim
+  - [X] When testing use more NPROCS
+  - [X] Remove sleeps
+  - [ ] Send more (inc buff)
+- [X] Termcolor -> Easier!
+*PROBLEM* : Deleted by mistake important packages! 
+*** 2018-06-26 :
+Problem resolved :
+- Using connection that doesn't require authentification.
+#+BEGIN_SRC sh 
+wget http://91.189.91.13/ubuntu/pool/main/r/resolvconf/resolvconf_1.69ubuntu1_all.deb
+dpkg -i resolvconf_1.69ubuntu1_all.deb
+reboot
+
+dpkg-reconfigure resolvconf
+reboot
+
+sudo rm /etc/resolv.conf
+sudo ln -s ../run/resolvconf/resolv.conf /etc/resolv.conf
+sudo resolvconf -u
+#+END_SRC
+
+- Now I need to adapt code (convert int to float manipulation, ...)
