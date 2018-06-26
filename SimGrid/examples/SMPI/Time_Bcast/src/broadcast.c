@@ -1,4 +1,3 @@
-char class;
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -56,7 +55,7 @@ int main(int argc, char **argv)
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
   double S[world_size];
-  int D[world_size];
+  float D[world_size];
 
   // Delay
   if (argc != 4 + world_size)
@@ -68,7 +67,7 @@ int main(int argc, char **argv)
 
   for (int i = 0; i < world_size; i++)
   {
-    D[i] = atoi(argv[4 + i]);
+    D[i] = atof(argv[4 + i]);
   }
 
   // Get the rank of the process
@@ -89,23 +88,20 @@ int main(int argc, char **argv)
     printf("MPI configuration done\n");
   }
 
-  srand(time(NULL));
-
   for (int i = 0; i <= N; i++)
   {
     PARSIM(min, max, D, i);
     if (DEBUG)
       printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
-    // MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
-    MPI_Bcast(&buf, 1, MPI_INT, world_rank, MPI_COMM_WORLD);
 
-    // Random calculations
+    MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
+
+    // Calculs
     buf = buf + world_rank;
-    sleep(rand() % 2);
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
   }
-  printf("From %d -> S[%d] : %1.2f       %1.2f\n", world_rank, world_rank, S[world_rank], starttime);
+  printf("From %d -> S[%d] : %g       \n", world_rank, world_rank, S[world_rank]);
 
   MPI_Finalize();
   return 0;
