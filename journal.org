@@ -1119,4 +1119,6 @@ sudo ln -s ../run/resolvconf/resolv.conf /etc/resolv.conf
 sudo resolvconf -u
 #+END_SRC
 
-- Now I need to adapt code (convert int to float manipulation, ...)
+Now I need to adapt code:
+- convert int to float manipulation
+- Reduce precision (more readable)
