@@ -1141,3 +1141,6 @@ file:/Ressources/img/decreasing.png
 **** Triage
 - de ~To_explore~ ne pas ajouter plusieurs pistes pour une même zone, 
 - supprimer les entrées <t_curr car inutiles
+*** 2018-06-28 Thursday :
+-> Very few machines available (Maintenance)
+How to increase D? 
