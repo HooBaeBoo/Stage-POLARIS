@@ -8,6 +8,7 @@
 #define TRUE 1
 #define FALSE 0
 #define DEBUG FALSE
+#define BUF_SIZE 100
 #define PARSIM(min, max, D, i)               \
   if (i < min)                               \
   {                                          \
@@ -18,17 +19,20 @@
   }                                          \
   if (i >= max)                              \
   {                                          \
-    S[world_rank] = MPI_Wtime(); \
+    S[world_rank] = MPI_Wtime();             \
     break;                                   \
   }
 // Sleep function
 void MPI_sleep(double atime)
 {
+  SMPI_SAMPLE_DELAY(atime)
+  /*
   double starttime = MPI_Wtime();
-  while ((MPI_Wtime() - starttime) < atime )
+  while ((MPI_Wtime() - starttime) < atime)
   {
     sleep(1);
   };
+  */
   return;
 }
 
@@ -48,7 +52,11 @@ int main(int argc, char **argv)
 
   MPI_Init(&argc, &argv);
   double starttime = MPI_Wtime();
-  int buf;
+  int buf[BUF_SIZE];
+
+  for (int i = 0; i < BUF_SIZE ; i++){
+    buf[i] = 96;
+  }
 
   // Get the number of processes
   int world_size;
@@ -74,8 +82,6 @@ int main(int argc, char **argv)
   int world_rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
 
-  buf = world_rank;
-
   // Get the name of the processor
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   int name_len;
@@ -94,12 +100,16 @@ int main(int argc, char **argv)
     if (DEBUG)
       printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
 
-    MPI_Bcast(&buf, 1, MPI_INT, i % world_size, MPI_COMM_WORLD);
+    MPI_Bcast(&buf, BUF_SIZE, MPI_INT, i % world_size, MPI_COMM_WORLD);
 
     // Calculs
-    buf = buf + world_rank;
+
+    for (int i = 0; i < BUF_SIZE; i++)
+    {
+      buf[i] = buf[i] + world_rank;
+    }
     if (DEBUG)
-      printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf);
+      printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf[0]);
   }
   printf("From %d -> S[%d] : %g       \n", world_rank, world_rank, S[world_rank]);
 
