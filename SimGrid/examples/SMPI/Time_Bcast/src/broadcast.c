@@ -8,7 +8,7 @@
 #define TRUE 1
 #define FALSE 0
 #define DEBUG FALSE
-#define BUF_SIZE 100
+#define BUF_SIZE 10000
 #define PARSIM(min, max, D, i)               \
   if (i < min)                               \
   {                                          \
