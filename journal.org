@@ -1103,7 +1103,7 @@ Last try : Restart Kernel, relaunch deploy with file -> It works. What happened?
   - [ ] Send more (inc buff)
 - [X] Termcolor -> Easier!
 *PROBLEM* : Deleted by mistake important packages! 
-*** 2018-06-26 :
+*** 2018-06-26 Tuesday :
 Problem resolved :
 - Using connection that doesn't require authentification.
 #+BEGIN_SRC sh 
@@ -1122,3 +1122,22 @@ sudo resolvconf -u
 Now I need to adapt code:
 - convert int to float manipulation
 - Reduce precision (more readable)
+*** 2018-06-27 Wednesday :
+ A nouveau : Problème de résolution de noms (DNS Err name not resolved).
+-> Réinstallation des packages (resolvconf/openresolv) -> Résolu!
+**** Apport de modifications -> Illisible : Travail sur la précision.
+Nouvelle variable precision permettant de régler la précision voulue.
+Mais : à l'avenir, modifier pgm pour envoi de données plus conséquentes -> Toujours trop petit même avec une précision à 4! 
+How ? 
+Round()
+print("%.2f"%value)
+**** Résolution du bug : 
+file:Ressources/img/bug_solution.png
+**** Appendleft mais en décroissant!
+Plusieurs solutions :
+file:/Ressources/img/decreasing.png
+***** revered(range()) : Méthode dite plus élégante
+***** range(_,_,-1)
+**** Triage
+- de ~To_explore~ ne pas ajouter plusieurs pistes pour une même zone, 
+- supprimer les entrées <t_curr car inutiles
