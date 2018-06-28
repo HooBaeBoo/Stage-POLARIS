@@ -1143,4 +1143,16 @@ file:/Ressources/img/decreasing.png
 - supprimer les entrées <t_curr car inutiles
 *** 2018-06-28 Thursday :
 -> Very few machines available (Maintenance)
-How to increase D? 
+How to increase D? Values are very small, difficult to handle and the probability to make them match is pretty low.
+First, let's correct how we append :
+there are 2 differents cases : If the final state didn't meet any precomputed state then we just need to follow the policy to create a state to compute.
+If a final state did meet a precomputed state then we need to be careful which state to compute in the future.
+Basically, we have to test if the upper limit of the zone where my machine worked is now bigger or smaller than the current t.
+If it is smaller then my paths, I will only add to ~To_explore~ paths above it and as usual the real state (t_curr , D_curr).
+Otherwise I create a new state for that zone according to the policy chosen.
+Lots of small mistakes were corrected :
+Still, with the ~Generate_Dprime~, We need to make a random choice between border_inf border_sup. with integer and the use of random choice function these had to be different because you can't have a range between 0 and 0 for example.
+No problem with floats. So we don't need to enlarge the space by 1!
+We only leave in ~To_explore~ interessting values by checking at each round, if the computation is on a zone above t_curr.
+And the output was made clearer by a better use Termcolor functions.
+We'll add a variable to get more data on how efficient the process actually was if it was successful.
