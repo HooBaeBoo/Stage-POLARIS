@@ -104,7 +104,8 @@ int main(int argc, char **argv)
 
     // Calculs
 
-    for (int i = 0; i < BUF_SIZE; i++)
+    for (int i = 0; i < world_rank * 100; i++)
+
     {
       buf[i] = buf[i] + world_rank;
     }
