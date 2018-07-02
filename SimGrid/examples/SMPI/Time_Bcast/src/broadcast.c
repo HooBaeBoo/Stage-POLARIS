@@ -104,11 +104,11 @@ int main(int argc, char **argv)
 
     // Calculs
 
-    for (int i = 0; i < world_rank * 100; i++)
+    /*for (int i = 0; i < world_rank * 100; i++)
 
     {
       buf[i] = buf[i] + world_rank;
-    }
+    }*/
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf[0]);
   }
