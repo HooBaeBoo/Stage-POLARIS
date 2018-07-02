@@ -1092,15 +1092,15 @@ Last try : Restart Kernel, relaunch deploy with file -> It works. What happened?
   - Send more (inc buff)
 *** 2018-06-25 Monday :
 **** TASKS :
-- [-] Appendleft When adding a task to ~To_explore~ indeed we do not append it but add it to head (append left)!
+- [X] Appendleft When adding a task to ~To_explore~ indeed we do not append it but add it to head (append left)!
   - [X] Appendleft
-  - [ ] sorted
+  - [X] sorted
 - Broadcast.c :
   - [X] Increase precision %g to get a value different from 0
-  - [ ] Sort sim
+  - [X] Sort sim
   - [X] When testing use more NPROCS
   - [X] Remove sleeps
-  - [ ] Send more (inc buff)
+  - [X] Send more (inc buff)
 - [X] Termcolor -> Easier!
 *PROBLEM* : Deleted by mistake important packages! 
 *** 2018-06-26 Tuesday :
@@ -1156,3 +1156,46 @@ No problem with floats. So we don't need to enlarge the space by 1!
 We only leave in ~To_explore~ interessting values by checking at each round, if the computation is on a zone above t_curr.
 And the output was made clearer by a better use Termcolor functions.
 We'll add a variable to get more data on how efficient the process actually was if it was successful.
+*** 2018-06-29 Friday :
+[[http://simgrid.gforge.inria.fr/contrib/R_visualization.php][Source]]
+R tutorial : rpy2
+**** Installation :
+pip3 install rpy2 :
+*PROBLEM :* rpy2 is no longer supporting Python <3
+*SOLUTION :* Install a older version 
+#+begin_src shell :results output :exports both
+pip3 install --user rpy2 == 2.8.6
+#+end_src 
+**** Instructions for use :
+***** Import
+First import package and everything it contains
+#+begin_src shell :results output :exports both
+import rpy2
+from rpy2 import *
+#+end_src
+***** Installation packages
+- import R's utility package
+- select mirror (?????)
+- Install :
+#+begin_src shell :results output :exports both
+utils.install_packages(packnames)
+#+end_src
+***** Inline vizualisation :
+-> X11 not possible
+-> Via PDF
+-> via image
+** 2018-07 July :
+*** 2018-07-02 Monday :
+**** Goal : higher D!
+Increased NPROCS : increased D from 10^-3 to 10^-1
+*WARNING* : If NPROCS is too big and the notebook not configured :
+IOPub data rate exceeded.
+#+begin_src shell :results output :exports both
+jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000  Time_Bcast.ipynb 
+#+end_src
+- [ ] Comment!
+**** New method!
+#+begin_src shell :results output :exports both
+%load_ext rpy2.ipython
+%%R
+#+end_src
