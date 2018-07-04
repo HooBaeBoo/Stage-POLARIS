@@ -1,0 +1,2 @@
+./bcast --cfg=smpi/privatization:1 --cfg=tracing:yes --cfg=tracing/filename:Time_Bcast.trace --cfg=tracing/smpi:yes --cfg=surf/precision:1e-9 --cfg=network/model:SMPI --cfg=smpi/simulate-computation:no --cfg=tracing/smpi/internals:yes griffon.xml smpitmp-appNdG0yH
+Execution failed with code 134.

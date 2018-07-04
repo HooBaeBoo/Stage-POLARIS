@@ -39,7 +39,7 @@ griffon_hostfile.txt:
 	for i in `seq 1 92`; do echo griffon-$$i.nancy.grid5000.fr; done > $@
 
 run:
-	smpirun -np ${NPROCS} -platform griffon.xml -hostfile griffon_hostfile.txt --cfg=smpi/simulate-computation:no -trace ./bcast ${MIN} ${MAX} ${N} ${DELAY} > bcast_results.txt
+	smpirun -np ${NPROCS} -platform griffon.xml -hostfile griffon_hostfile.txt --cfg=smpi/simulate-computation:no -trace -trace-file Time_Bcast.trace --cfg=tracing/smpi/internals:yes ./bcast ${MIN} ${MAX} ${N} ${DELAY} > bcast_results.txt
 
 clean:
 	rm -f $(BIN_FILES) *.o *~
