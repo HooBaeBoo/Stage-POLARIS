@@ -1199,3 +1199,37 @@ jupyter notebook --NotebookApp.iopub_data_rate_limit=10000000  Time_Bcast.ipynb
 %load_ext rpy2.ipython
 %%R
 #+end_src
+*** 2018-07-03 Tuesday :
+apt-get install pajeng -> Marche pas
+*SOLUTION* : Isolation cellule.
+
+*** 2018-07-05 Wednesay :
+*** 2018-07-09 Monday :
+**** ggplot2 guide :
+***** 1st step : read.csv
+****** header :
+a logical value indicating whether the file contains the names of the variables as its first line. If missing, the value is determined from the file format: header is set to TRUE if and only if the first row contains one fewer field than the number of columns.
+****** strip.white
+logical. Used only when sep has been specified, and allows the stripping of leading and trailing white space from unquoted character fields (numeric fields are always stripped). See scan for further details (including the exact meaning of ‘white space’), remembering that the columns may include the row names.
+***** 2nd step : names()
+***** as.numeric
+Creates or coerces objects of type "numeric". is.numeric is a more general test of an object being interpretable as numbers
+**** RGPD seminar : [[https://docs.google.com/document/d/10nxiXRDfCm4b1SjU0m_54UfeYhr2YD1f3_5Y7XfAIlM/edit?usp=sharing][here]]
+**** Arnaud skype :
+-> Do what Florence said with precision :)
+*** 2018-07-10 Tuesday :
+~state_match~ : test with the gap
+*** 2018-07-11 Wednesday :
+- smart borders : ajuster les bornes pour chaque processus à chaque tour. Si max est plus élevé je monte sinon je laisse. Idem pour min
+- smart guess : moyenne de la valeur à chaque tour
+- Repérer motif...? pattern learning
+*** 2018-07-12 Thursday :
+Cybersecurity day :)
+Man in the middle attack / DNS Spoofing -> Big thanks to Alexandra for helping.
+*** 2018-07-13 Friday :
+Back to smart guess and smart borders!
+For smart guess : I'll use a hash table : t-> average D.
+Updating itself each round recomputing average value : ((average)(nb_val -1)+x)/nb_val
+Related functions :
+- ~reset_smart_table~
+- ~update_smart_table~
