@@ -1,0 +1,2 @@
+./bcast --cfg=smpi/privatization:1 --cfg=tracing:yes --cfg=tracing/filename:Time_Bcast.trace --cfg=tracing/smpi:yes --cfg=surf/precision:1e-9 --cfg=network/model:SMPI --cfg=smpi/simulate-computation:no --cfg=tracing/smpi/internals:yes --cfg=tracing/smpi:yes --cfg=smpi/host-speed:286087 griffon.xml smpitmp-apptKDlfl
+Execution failed with code 139.
