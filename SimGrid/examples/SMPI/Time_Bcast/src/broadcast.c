@@ -20,11 +20,15 @@
   if (i >= max)                              \
   {                                          \
     S[world_rank] = MPI_Wtime();             \
-    break;                                   \
-  }
-// Sleep function
+    break; \
+  }                                   \
+  // Sleep function
 void MPI_sleep(double atime)
 {
+  FILE *p;
+  p = fopen("mpi_sleep","ab+");
+  fprintf(p,"%g\n",atime);
+  fclose(p);
   SMPI_SAMPLE_DELAY(atime)
   /*
   double starttime = MPI_Wtime();
@@ -38,7 +42,7 @@ void MPI_sleep(double atime)
 
 int main(int argc, char **argv)
 {
-
+  FILE *fp = fopen("scores","ab+");
   /* SETTINGS :
   MIN : inferior border for iterations
   MAX : superior border for iterations
@@ -63,7 +67,7 @@ int main(int argc, char **argv)
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
   double S[world_size];
-  float D[world_size];
+  double D[world_size];
 
   // Delay
   if (argc != 4 + world_size)
@@ -76,12 +80,13 @@ int main(int argc, char **argv)
   for (int i = 0; i < world_size; i++)
   {
     D[i] = atof(argv[4 + i]);
-  }
+    fprintf(fp,"%g\n",D[i]);
+   }
+  fclose(fp);
 
   // Get the rank of the process
   int world_rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-
   // Get the name of the processor
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   int name_len;
