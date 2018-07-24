@@ -117,7 +117,7 @@ int main(int argc, char **argv)
     if (DEBUG)
       printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf[0]);
   }
-  printf("From %d -> S[%d] : %g       \n", world_rank, world_rank, S[world_rank]);
+  printf("From %d -> %g       \n", world_rank, S[world_rank]);
 
   MPI_Finalize();
   return 0;
