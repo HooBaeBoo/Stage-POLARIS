@@ -2,8 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include "smpi/mpi.h"
-#include "simgrid/instr.h" //TRACE_
+#include <mpi.h>
+/* #include "smpi/mpi.h" */
+/* #include "simgrid/instr.h" //TRACE_ */
 
 #define TRUE 1
 #define FALSE 0
@@ -15,59 +16,40 @@
     i = min;                                 \
     if (DEBUG)                               \
       printf("[%d] Sleeping\n", world_rank); \
-    MPI_sleep(D[world_rank]);                \
+    sleep(D[world_rank]);                    \
   }                                          \
   if (i >= max)                              \
   {                                          \
     S[world_rank] = MPI_Wtime();             \
     break; \
   }                                   \
-  // Sleep function
-void MPI_sleep(double atime)
-{
-  FILE *p;
-  p = fopen("mpi_sleep","ab+");
-  fprintf(p,"%g\n",atime);
-  fclose(p);
-  SMPI_SAMPLE_DELAY(atime)
-  /*
-  double starttime = MPI_Wtime();
-  while ((MPI_Wtime() - starttime) < atime)
-  {
-    sleep(1);
-  };
-  */
-  return;
-}
 
 int main(int argc, char **argv)
 {
-  FILE *fp = fopen("scores","ab+");
   /* SETTINGS :
   MIN : inferior border for iterations
   MAX : superior border for iterations
   */
 
-  int min = atoi(argv[3]);
-  int max = atoi(argv[4]);
-
-  // Iterations number
-  int N = atoi(argv[5]);
-
   MPI_Init(&argc, &argv);
-  double starttime = MPI_Wtime();
-  int buf[BUF_SIZE];
 
-  for (int i = 0; i < BUF_SIZE ; i++){
-    buf[i] = 96;
-  }
+  if(DEBUG)
+    for (int i = 0; i < argc; i++)
+      printf("argc[%d] = %s\n",i,  argv[i]);
 
   // Get the number of processes
   int world_size;
   MPI_Comm_size(MPI_COMM_WORLD, &world_size);
 
-  double S[world_size];
-  double D[world_size];
+  double *S = calloc(world_size, sizeof(double));
+  double *D = calloc(world_size, sizeof(double));
+  
+  int min = atoi(argv[1]);
+  int max = atoi(argv[2]);
+
+ 
+  // Iterations number
+  int N = atoi(argv[3]);
 
   // Delay
   if (argc != 4 + world_size)
@@ -80,10 +62,14 @@ int main(int argc, char **argv)
   for (int i = 0; i < world_size; i++)
   {
     D[i] = atof(argv[4 + i]);
-    fprintf(fp,"%g\n",D[i]);
    }
-  fclose(fp);
 
+  if (DEBUG) {
+    printf("Min = %d\n", min);
+    printf("Max = %d\n", max);
+    printf("N = %d\n", N);
+  }
+ 
   // Get the rank of the process
   int world_rank;
   MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
@@ -91,6 +77,11 @@ int main(int argc, char **argv)
   char processor_name[MPI_MAX_PROCESSOR_NAME];
   int name_len;
   MPI_Get_processor_name(processor_name, &name_len);
+
+  int buf[BUF_SIZE];
+  for (int i = 0; i < BUF_SIZE ; i++){
+    buf[i] = world_rank;
+  }
 
   if (world_rank == 0 && DEBUG)
   {
@@ -103,7 +94,7 @@ int main(int argc, char **argv)
   {
     PARSIM(min, max, D, i);
     if (DEBUG)
-      printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf);
+      printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf[i]);
 
     MPI_Bcast(&buf, BUF_SIZE, MPI_INT, i % world_size, MPI_COMM_WORLD);
 
@@ -115,7 +106,7 @@ int main(int argc, char **argv)
       buf[i] = buf[i] + world_rank;
     }*/
     if (DEBUG)
-      printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf[0]);
+      printf("[%d](i:%d): After Bcast, buf is %d\n", world_rank, i, buf[i]);
   }
   printf("From %d -> %g       \n", world_rank, S[world_rank]);
 

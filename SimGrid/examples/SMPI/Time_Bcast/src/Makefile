@@ -1,4 +1,13 @@
-all: bcast
+all: broadcast
+
+#### External Shell Variables that have to be set for the execution to work properly
+# - NPROCS (e.g., 10 for a simulation with 10 MPI ranks)
+# - N: total number of iterations
+# - MIN: the simulation should start at iteration MIN
+# - MAX: the simulation should stopt at iteration MAX
+# - DELAY: (e.g., '0, 1.2, 0.3, ..., 0.5') by how much each MPI rank should wait before starting the execution for real
+# - RESULTS_TRACE: name of the Paje trace (e.g., output.trace)
+# - RESULTS_OUTPUT: name of the output file for stdout (e.g., output.txt)
 
 SIMGRID_INSTALL_PATH = $$HOME
 CC = smpicc
@@ -23,9 +32,6 @@ C_FILES = $(wildcard *.c)
 BIN_FILES = $(patsubst %.c,%,$(C_FILES))
 O_FILES = $(patsubst %.c,%.o,$(C_FILES))
 
-bcast: broadcast.o
-	$(CC) $(INCLUDES) $(DEFS) $(CFLAGS) $^ $(LIBS) $(LDADD) -o $@
-
 %: %.o
 	$(CC) $(INCLUDES) $(DEFS) $(CFLAGS) $^ $(LIBS) $(LDADD) -o $@
 
@@ -39,7 +45,9 @@ griffon_hostfile.txt:
 	for i in `seq 1 92`; do echo griffon-$$i.nancy.grid5000.fr; done > $@
 
 run:
-	smpirun -np ${NPROCS} -platform griffon.xml -hostfile griffon_hostfile.txt --cfg=smpi/simulate-computation:no -trace -trace-file Time_Bcast.trace --cfg=tracing/smpi/internals:yes --cfg=tracing/smpi:yes --cfg=smpi/host-speed:286087 ./bcast ${MIN} ${MAX} ${N} ${DELAY} > bcast_results.txt
+	mkdir -p `dirname ${RESULTS_TRACE}`
+	mkdir -p `dirname ${RESULTS_OUTPUT}`
+	smpirun -np ${NPROCS} -platform griffon.xml -hostfile griffon_hostfile.txt --cfg=smpi/simulate-computation:no -trace -trace-file ${RESULTS_TRACE} --cfg=tracing/smpi/internals:yes --cfg=tracing/smpi:yes --cfg=smpi/host-speed:286087 ./broadcast ${MIN} ${MAX} ${N} ${DELAY} > ${RESULTS_OUTPUT}
 
 clean:
 	rm -f $(BIN_FILES) *.o *~
