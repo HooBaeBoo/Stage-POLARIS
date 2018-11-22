@@ -6,6 +6,14 @@
 /* #include "smpi/mpi.h" */
 /* #include "simgrid/instr.h" //TRACE_ */
 
+int mysleep(double duration);
+int mysleep(double duration) {
+  struct timespec ts;
+  ts.tv_sec=(long) (floor(duration));
+  ts.tv_nsec=(long) (floor((duration-floor(duration))*1E9));
+  nanosleep(&ts,NULL);
+  return 0;
+}
 #define TRUE 1
 #define FALSE 0
 #define DEBUG FALSE
@@ -15,8 +23,10 @@
   {                                          \
     i = min;                                 \
     if (DEBUG)                               \
-      printf("[%d] Sleeping\n", world_rank); \
-    sleep(D[world_rank]);                    \
+      printf("[%d:%g] Sleeping for %g\n", world_rank, MPI_Wtime(),D[world_rank]);	\
+    mysleep(D[world_rank]);                    \
+    if (DEBUG)                               \
+      printf("[%d:%g] Waking up\n", world_rank, MPI_Wtime());	\
   }                                          \
   if (i >= max)                              \
   {                                          \
@@ -59,16 +69,19 @@ int main(int argc, char **argv)
     exit(-1);
   }
 
-  for (int i = 0; i < world_size; i++)
-  {
-    D[i] = atof(argv[4 + i]);
-   }
-
   if (DEBUG) {
     printf("Min = %d\n", min);
     printf("Max = %d\n", max);
     printf("N = %d\n", N);
   }
+
+  for (int i = 0; i < world_size; i++)
+  {
+    D[i] = atof(argv[4 + i]);
+    if (DEBUG) printf("D[%d] = %g\n",i,D[i]);
+   }
+
+
  
   // Get the rank of the process
   int world_rank;
@@ -93,9 +106,10 @@ int main(int argc, char **argv)
   for (int i = 0; i <= N; i++)
   {
     PARSIM(min, max, D, i);
-    if (DEBUG)
-      printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf[i]);
-
+    if (DEBUG) {
+      printf("************** %d [P%d: %g] ***************\n", i, world_rank, MPI_Wtime());
+      /* printf("[%d](i:%d): Before Bcast, buf is %d\n", world_rank, i, buf[i]); */
+    }
     MPI_Bcast(&buf, BUF_SIZE, MPI_INT, i % world_size, MPI_COMM_WORLD);
 
     // Calculs
